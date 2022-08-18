@@ -12,17 +12,29 @@ function AllPokemons() {
   const [pokemons, setPokemons] = useState([])
   const [isFecthing, setIsFetching] = useState(true)
   const [page, setPage] = useState(1)
+  const [search, setSearch] = useState("/pokemon")
+  const [nextSearch, setNextSearch] = useState("")
+  const [previousSearch, setPreviousSearch] = useState("")
 
   useEffect(()=>{
 
-    getData()
+    getData(search)
 
-  },[])
+  },[search])
 
-  const getData = async ()=>{
+  const getData = async (url)=>{
 
     try{
-      const pokemonList = await getAllPokemons()
+      const pokemonList = await getAllPokemons(url)
+
+      if(pokemonList.data.next){
+        setNextSearch(pokemonList.data.next.slice(25))
+      }
+
+      if(pokemonList.data.previous){
+        setPreviousSearch(pokemonList.data.previous.slice(25))
+      } 
+      
       setPokemons(pokemonList.data.results)
       setIsFetching(false)
     }
@@ -31,9 +43,13 @@ function AllPokemons() {
     }
   }
 
-  const passNextPage = ()=> setPage(page + 1)
+  // Button previous
   const passPreviousPage = ()=> page > 1 && setPage(page - 1)
+  const previousPage = ()=> page > 1 && setSearch(previousSearch)
 
+  // Button next
+  const passNextPage = ()=> setPage(page + 1)
+  const nextPage = ()=> setSearch(nextSearch)
 
   if(isFecthing){
     return <h3>Cargando . . .</h3>
@@ -52,9 +68,9 @@ function AllPokemons() {
         })
       }
 
-      <button onClick={passPreviousPage}>Previous page</button>
+      <button onClick={()=>{passPreviousPage(); previousPage()}}>Previous page</button>
       <button disabled>Current page <span>{page}</span></button>
-      <button onClick={passNextPage}>Next page</button>
+      <button onClick={()=>{passNextPage(); nextPage()}}>Next page</button>
     </main>
   )
 }

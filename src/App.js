@@ -14,7 +14,8 @@ import Register from './pages/auth/Register';
 import Login from './pages/auth/Login';
 
 // Components
-import Navbar from './pages/Navbar';
+import Navbar from './components/Navbar';
+import RandomPokemon from './pages/pokemons/RandomPokemon';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path='/' element={<Home/>}/>
         <Route path='/pokemon/all' element={<AllPokemons/>}/>
         <Route path='/pokemon/:id/details' element={<PokemonDetails/>}/>
+        <Route path='/pokemon/random' element={<RandomPokemon/>}/>
         <Route path='/register' element={<Register/>}/>
         <Route path='/login' element={<Login/>}/>
 
