@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { allPokemonsRandom } from '../../services/pokemon.services'
+import { allPokemonsRandom, getPokemonById } from '../../services/pokemon.services'
 
 function RandomPokemon() {
 
@@ -7,19 +7,21 @@ function RandomPokemon() {
     const [pokeName, setPokeName] = useState("")
     const [response, setResponse] = useState(false)
 
-    useEffect(()=>{
-        getPokeArr()
-    }, [])
+    // useEffect(()=>{
+    //     getPokeArr()
+    // }, [])
 
     const getPokeArr = async ()=>{
         try{
             const pokeArr = await allPokemonsRandom()
             const randomNum = Math.floor(Math.random()*pokeArr.data.results.length)
-            setRandomPokemon(pokeArr.data.results[randomNum])
+            const pokemon = await getPokemonById(randomNum)
+            setRandomPokemon(pokemon.data)
+            console.log(randomPokemon)
     
         }
         catch(error){
-            console.log(error)
+            getPokeArr()
         }
     }
 
@@ -40,11 +42,15 @@ function RandomPokemon() {
 
         <h3>Guess the pokemon</h3>
 
-        <article>
-            <h4>{randomPokemon?.name}</h4>
+        {
+            randomPokemon && <article>
+            <img src={randomPokemon.sprites.front_default} alt="foto" />
         </article>
+        }
 
         {response && <p>Correcto</p>}
+
+        <button onClick={getPokeArr}>Get a random Pokemon</button>
 
         <form onSubmit={handleSubmit}>
             <input onChange={handleChange} type="text" value={pokeName} />

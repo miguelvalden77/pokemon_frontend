@@ -14,4 +14,8 @@ const allPokemonsRandom = ()=>{
     return service.get("pokemon?limit=100000&offset=0")
 }
 
-export {getAllPokemons, getAPokemon, allPokemonsRandom}
+const getPokemonById = (id)=>{
+    return service.get(`pokemon/${id}`)
+}
+
+export {getAllPokemons, getAPokemon, allPokemonsRandom, getPokemonById}

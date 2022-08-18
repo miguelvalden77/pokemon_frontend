@@ -16,6 +16,7 @@ import Login from './pages/auth/Login';
 // Components
 import Navbar from './components/Navbar';
 import RandomPokemon from './pages/pokemons/RandomPokemon';
+import AllPokemonGames from './pages/pokemons/AllPokemonGames';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path='/pokemon/all' element={<AllPokemons/>}/>
         <Route path='/pokemon/:id/details' element={<PokemonDetails/>}/>
         <Route path='/pokemon/random' element={<RandomPokemon/>}/>
+        <Route path='/pokemon/games' element={<AllPokemonGames/>}/>
         <Route path='/register' element={<Register/>}/>
         <Route path='/login' element={<Login/>}/>
 
