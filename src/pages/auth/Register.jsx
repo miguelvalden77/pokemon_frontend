@@ -6,6 +6,7 @@ function Register() {
 
   const navigate = useNavigate()
 
+  const [errorMessage, setErrorMessage] = useState("")
   const [data, setData] = useState({username: "", email: "", password: ""})
   const {username, email, password} = data
 
@@ -22,7 +23,12 @@ function Register() {
       navigate("/login")
     }
     catch(error){
-      console.log(error.message)
+
+      if(error.response.status === 400){
+        setErrorMessage(error.response.data.errorMessage)
+      } else {
+        navigate("/error")
+      }
     }
   }
 
@@ -30,6 +36,8 @@ function Register() {
     <div>
 
       <h3>Register</h3>
+
+      {errorMessage && <p>{errorMessage}</p>}
 
       <form onSubmit={handleSubmit}>
         
