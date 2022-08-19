@@ -18,4 +18,8 @@ const updatePost = (id, info)=>{
     return service.patch(`/post/${id}/edit`, info)
 }
 
-export {createPost, getPost, deletePost, updatePost}
+const getAPost = (id)=>{
+    return service.get(`/post/${id}`)
+}
+
+export {createPost, getPost, deletePost, updatePost, getAPost}

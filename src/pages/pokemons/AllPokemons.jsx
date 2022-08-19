@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { getAllPokemons } from '../../services/pokemon.services'
+import { getAllPokemons, getAPokemon } from '../../services/pokemon.services'
 import {useNavigate} from "react-router-dom"
 import {Link} from "react-router-dom"
 
@@ -26,6 +26,7 @@ function AllPokemons() {
 
     try{
       const pokemonList = await getAllPokemons(url)
+      console.log(pokemonList.data.results[0])
 
       if(pokemonList.data.next){
         setNextSearch(pokemonList.data.next.slice(25))
@@ -59,10 +60,12 @@ function AllPokemons() {
     <main>
 
       {
-        pokemons.map(e=>{
+        pokemons.map(async e=>{
+          const pokemon = await getAPokemon(e.name)
           return <article key={e.name}>
             
             <h3>{e.name}</h3>
+            <img src={pokemon?.sprites?.default} alt="" />
             <button><Link to={`/pokemon/${e.name}/details`}>See details</Link></button>
           </article>
         })

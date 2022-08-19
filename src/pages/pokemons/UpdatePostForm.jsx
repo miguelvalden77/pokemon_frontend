@@ -1,15 +1,33 @@
-import React, { useState } from 'react'
-import { updatePost } from '../../services/post.services'
-import {useParams} from "react-router-dom"
+import React, { useEffect, useState } from 'react'
+import { getAPost, updatePost } from '../../services/post.services'
+import {useParams, useNavigate} from "react-router-dom"
 
 function UpdatePostForm() {
 
   const {id} = useParams()
+  const navigate = useNavigate()
 
   const [data, setData] = useState({title: "", description: "", picture: ""})
   const {title, description, picture} = data
 
-  const handleChange = e => setData({...data, [e.target.value]: e.target.value})
+  useEffect(()=>{
+    getValues()
+  }, [])
+
+  const getValues = async ()=>{
+
+    try{
+      const post = await getAPost(id)
+      setData({title: post.data.title, description: post.data.description, picture: post.data.picture})
+    }
+    catch(error){
+      console.log(error)
+    }
+
+  }
+
+  const handleChange = e => setData({...data, [e.target.name]: e.target.value})
+  
   const handleSubmit = async e => {
 
     e.preventDefault()
@@ -17,6 +35,7 @@ function UpdatePostForm() {
 
     try{
       await updatePost(id, info)
+      navigate("/pokemon/news")
     }
     catch(error){
       console.log(error)
