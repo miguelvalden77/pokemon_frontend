@@ -8,7 +8,8 @@ function Navbar() {
         <NavLink to={"/pokemon/random"}>Random</NavLink>
         <NavLink to={"/register"}>Register</NavLink>
         <NavLink to={"/login"}>Login</NavLink>
-        <NavLink to={"/pokemon/games"}>Pokemon games</NavLink>
+        <NavLink to={"/pokemon/games"}>Games</NavLink>
+        <NavLink to={"/pokemon/news"}>News</NavLink>
     </nav>
   )
 }
