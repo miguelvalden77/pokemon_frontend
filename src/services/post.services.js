@@ -14,4 +14,8 @@ const deletePost = (id)=>{
     return service.delete(`/post/${id}/delete`)
 }
 
-export {createPost, getPost, deletePost}
+const updatePost = (id, info)=>{
+    return service.patch(`/post/${id}/edit`, info)
+}
+
+export {createPost, getPost, deletePost, updatePost}

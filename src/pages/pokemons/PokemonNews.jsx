@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import AddPost from '../../components/AddPost'
 import { getPost, deletePost } from '../../services/post.services'
+import {Link} from "react-router-dom"
 
 
 function PokemonNews() {
@@ -37,6 +38,7 @@ function PokemonNews() {
                         await deletePost(e._id)
                         getData()
                     }}>Delete</button>
+                    <Link to={`/pokemon/${e._id}/news`}><button>Update</button></Link>
                 </article>
             })
         }

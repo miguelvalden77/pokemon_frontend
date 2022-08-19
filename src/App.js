@@ -19,6 +19,7 @@ import RandomPokemon from './pages/pokemons/RandomPokemon';
 import AllPokemonGames from './pages/pokemons/AllPokemonGames';
 import SingleGame from './pages/pokemons/SingleGame';
 import PokemonNews from './pages/pokemons/PokemonNews';
+import UpdatePostForm from './pages/pokemons/UpdatePostForm';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         <Route path='/pokemon/games' element={<AllPokemonGames/>}/>
         <Route path='/pokemon/:url/games' element={<SingleGame/>}/>
         <Route path='/pokemon/news' element={<PokemonNews/>}/>
+        <Route path='/pokemon/:id/news' element={<UpdatePostForm/>}/>
         <Route path='/register' element={<Register/>}/>
         <Route path='/login' element={<Login/>}/>
 
