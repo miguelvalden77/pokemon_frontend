@@ -1,7 +1,10 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { createPost } from '../services/post.services'
+import {AuthContext} from "../context/auth.context"
 
 function AddPost() {
+
+    const {user} = useContext(AuthContext)
 
     const [data, setData] = useState({title: "", picture: "", description: ""})
     const {title, description, picture} = data
@@ -9,7 +12,7 @@ function AddPost() {
     const handleChange = e => setData({...data, [e.target.name]: e.target.value})
     const handleSubmit = e => {
         e.preventDefault()
-        const info = {title, description, picture}
+        const info = {title, description, picture, owner: user._id}
         createPost(info)
     }
 

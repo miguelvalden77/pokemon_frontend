@@ -1,7 +1,7 @@
 import service from "./config.service"
 
-const addPokemon = (userId, name) =>{
-    return service.post(`/user/${name}/pokemon`, userId)
+const addPokemon = (info) =>{
+    return service.post(`/user/add/pokemon`, info)
 }
 
 export {addPokemon}

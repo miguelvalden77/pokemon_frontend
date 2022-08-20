@@ -1,14 +1,18 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import {createComment} from '../services/comment.services'
+import {AuthContext} from "../context/auth.context"
+
 
 function CreateComments({postId}) {
+
+  const {user} = useContext(AuthContext)
 
   const [message, setMessage] = useState("")
 
   const handleChange = e=> setMessage(e.target.value)
   const handleSubmit = e=>{
     e.preventDefault()
-    const info = {message, postId}
+    const info = {message, postId, userId: user._id}
     createComment(info)
   }
 

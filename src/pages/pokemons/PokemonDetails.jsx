@@ -7,7 +7,7 @@ import {AuthContext} from "../../context/auth.context"
 
 const PokemonDetails = ()=> {
 
-  const {isUserActive , user} = useContext(AuthContext)
+  const {user} = useContext(AuthContext)
 
 
   const {id} = useParams()
@@ -31,6 +31,16 @@ const PokemonDetails = ()=> {
     }
   }
 
+  const addToFav = async ()=>{
+    try{
+      const info = {userId: user._id, name: id}
+      await addPokemon(info)
+    }
+    catch(error){
+      console.log(error)
+    }
+  } 
+
 
   if(isFetching){
     return <h3>Cargando . . .</h3>
@@ -42,7 +52,7 @@ const PokemonDetails = ()=> {
       <article>
         <h3>{pokemon.name}</h3>
         <img src={pokemon.sprites.front_default} alt="foto" />
-        <button>Añadir a favoritos</button>
+        <button onClick={addToFav}>Añadir a favoritos</button>
       </article>
 
     </div>
