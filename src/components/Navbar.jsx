@@ -1,11 +1,17 @@
 import { useState, useContext } from "react"
-import {NavLink} from "react-router-dom"
+import {NavLink, useNavigate} from "react-router-dom"
 import {AuthContext} from "../context/auth.context"
 
 function Navbar() {
 
-  const {isUserActive} = useContext(AuthContext)
-  console.log(isUserActive)
+  const {isUserActive, authenticateUser} = useContext(AuthContext)
+  const navigate = useNavigate()
+  
+  const handleLogout = ()=>{
+    localStorage.removeItem("authToken")
+    authenticateUser()
+    navigate("/")
+  }
 
   if(isUserActive === true){
     return(
@@ -16,6 +22,7 @@ function Navbar() {
         <NavLink to={"/pokemon/random"}>Random</NavLink>
         <NavLink to={"/pokemon/games"}>Games</NavLink>
         <NavLink to={"/pokemon/news"}>News</NavLink>
+        <button onClick={handleLogout}>Logout</button>
       </nav>
     )
   } else{

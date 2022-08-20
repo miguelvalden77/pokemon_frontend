@@ -1,8 +1,14 @@
 import { useEffect, useState } from 'react'
 import {useParams, useNavigate} from "react-router-dom"
 import { getAPokemon } from '../../services/pokemon.services'
+import {addPokemon} from "../../services/user.service"
+import { useContext } from "react"
+import {AuthContext} from "../../context/auth.context"
 
-function PokemonDetails() {
+const PokemonDetails = ()=> {
+
+  const {isUserActive , user} = useContext(AuthContext)
+
 
   const {id} = useParams()
   const navigate = useNavigate()

@@ -1,7 +1,4 @@
-import axios from "axios"
-
-const service = axios.create({baseURL:"http://localhost:5005/api"})
-
+import service from "./config.service"
 
 const createPost = info =>{
     return service.post("/post/create", info)

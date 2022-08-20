@@ -1,6 +1,4 @@
-import axios from "axios"
-
-const service = axios.create({baseURL:"http://localhost:5005/api"})
+import service from "./config.service"
 
 
 const createComment = info =>{

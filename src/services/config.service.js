@@ -1,18 +1,18 @@
-// import axios from "axios"
-// const service = axios.create({baseURL:"http://localhost:5005/api"})
+import axios from "axios"
+const service = axios.create({baseURL:"http://localhost:5005/api"})
 
-// service.interceptors.request.use((config)=>{
+service.interceptors.request.use((config)=>{
 
-//     const token = localStorage.getItem("authToken")
+    const token = localStorage.getItem("authToken")
 
-//     if(token){
-//         config.headers = {
-//             authorization: `Bearer ${token}`
-//         }
-//     }
+    if(token){
+        config.headers = {
+            authorization: `Bearer ${token}`
+        }
+    }
 
-//     return config
+    return config
 
-// })
+})
 
-//export default service
+export default service

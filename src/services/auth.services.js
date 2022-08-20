@@ -1,20 +1,4 @@
-import axios from "axios"
-
-const service = axios.create({baseURL:"http://localhost:5005/api"})
-
-service.interceptors.request.use((config)=>{
-
-    const token = localStorage.getItem("authToken")
-
-    if(token){
-        config.headers = {
-            authorization: `Bearer ${token}`
-        }
-    }
-
-    return config
-
-})
+import service from "./config.service"
 
 const registerUser = (newUser)=>{
     return service.post("/auth/signup", newUser)

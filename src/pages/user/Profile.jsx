@@ -1,16 +1,22 @@
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 import {AuthContext} from "../../context/auth.context"
 
-function Profile() {
+const Profile = ()=> {
 
-  const {user} = useContext(AuthContext)
-  console.log(user)
+  const {user, isUserActive} = useContext(AuthContext)
+  const navigate = useNavigate()
 
-  return (
-    <main>
-        <h3>Bienvenido a tu perfil {user.username}</h3>
-    </main>
-  )
+  if(isUserActive === true){
+    return (
+      <main>
+          <h3>Bienvenido a tu perfil {user.username}</h3>
+      </main>
+    )
+  }
+  else{
+    navigate("/login")
+  }
 }
 
 export default Profile

@@ -22,6 +22,7 @@ import PokemonNews from './pages/pokemons/PokemonNews';
 import UpdatePostForm from './pages/pokemons/UpdatePostForm';
 import Profile from "./pages/user/Profile"
 import CreateComments from './components/CreateComments';
+import IsPrivate from './components/IsPrivate';
 
 function App() {
   return (
@@ -32,9 +33,9 @@ function App() {
       <Routes>
 
         <Route path='/' element={<Home/>}/>
-        <Route path='/profile' element={<Profile/>}/>
+        <Route path='/profile' element={<IsPrivate> <Profile/> </IsPrivate>}/>
         <Route path='/pokemon/all' element={<AllPokemons/>}/>
-        <Route path='/pokemon/:id/details' element={<PokemonDetails/>}/>
+        <Route path='/pokemon/:id/details' element={<IsPrivate> <PokemonDetails/> </IsPrivate>}/>
         <Route path='/pokemon/random' element={<RandomPokemon/>}/>
         <Route path='/pokemon/games' element={<AllPokemonGames/>}/>
         <Route path='/pokemon/:url/games' element={<SingleGame/>}/>
