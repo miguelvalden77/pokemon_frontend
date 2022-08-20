@@ -22,6 +22,7 @@ function AllPokemons() {
   useEffect(()=>{
 
     getData(search)
+    //getFullData()
 
   },[search])
 
@@ -40,15 +41,29 @@ function AllPokemons() {
         setPreviousSearch(pokemonList.data.previous.slice(25))
       }
 
-
       setPokemons(pokemonList.data.results)
       setIsFetching(false)
-      console.log(pokemonInfo)
+
     }
     catch(error){
 
       console.log(error)
     }
+  }
+
+
+  const getFullData = ()=>{
+    const index = pokemons.map(e=>e.url.split("/")[6])
+
+      const arr = []
+      index.forEach(e=>{
+          axios.get(`https://pokeapi.co/api/v2/pokemon/${e}/`)
+          .then(res=> arr.push(res.data))
+          .catch(err=>console.log(err))
+      })
+      
+      setPokemonInfo(arr)
+      console.log(pokemonInfo)
   }
 
 

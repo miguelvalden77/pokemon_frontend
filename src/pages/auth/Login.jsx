@@ -1,8 +1,12 @@
-import {useState} from 'react'
+import {useState, useContext} from 'react'
 import { loginUser } from '../../services/auth.services'
 import {useNavigate} from "react-router-dom"
 
+import {AuthContext} from "../../context/auth.context"
+
 function Login() {
+
+  const {authenticateUser} = useContext(AuthContext)
 
   const navigate = useNavigate()
 
@@ -21,9 +25,10 @@ function Login() {
       console.log(response.data)
 
       const authToken = response.data.authToken
-      console.log(authToken)
 
       localStorage.setItem("authToken", authToken)
+
+      authenticateUser()
 
       navigate("/pokemon/all")
       
