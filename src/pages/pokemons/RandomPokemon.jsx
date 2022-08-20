@@ -12,6 +12,9 @@ function RandomPokemon() {
     // }, [])
 
     const getPokeArr = async ()=>{
+
+        setResponse(false)
+        setPokeName("")
         try{
             const pokeArr = await allPokemonsRandom()
             const randomNum = Math.floor(Math.random()*pokeArr.data.results.length)
