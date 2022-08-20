@@ -2,6 +2,7 @@ import axios from "axios"
 
 const service = axios.create({baseURL:"http://localhost:5005/api"})
 
+
 const createPost = info =>{
     return service.post("/post/create", info)
 }

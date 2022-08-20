@@ -30,7 +30,7 @@ function Login() {
 
       authenticateUser()
 
-      navigate("/pokemon/all")
+      navigate("/profile")
       
     }
     catch(error){

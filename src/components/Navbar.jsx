@@ -11,6 +11,7 @@ function Navbar() {
     return(
       <nav>
         <NavLink to={"/"}>Home</NavLink>
+        <NavLink to={"/profile"}>Profile</NavLink>
         <NavLink to={"/pokemon/all"}>Pokédex</NavLink>
         <NavLink to={"/pokemon/random"}>Random</NavLink>
         <NavLink to={"/pokemon/games"}>Games</NavLink>

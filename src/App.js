@@ -20,6 +20,7 @@ import AllPokemonGames from './pages/pokemons/AllPokemonGames';
 import SingleGame from './pages/pokemons/SingleGame';
 import PokemonNews from './pages/pokemons/PokemonNews';
 import UpdatePostForm from './pages/pokemons/UpdatePostForm';
+import Profile from "./pages/user/Profile"
 import CreateComments from './components/CreateComments';
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
       <Routes>
 
         <Route path='/' element={<Home/>}/>
+        <Route path='/profile' element={<Profile/>}/>
         <Route path='/pokemon/all' element={<AllPokemons/>}/>
         <Route path='/pokemon/:id/details' element={<PokemonDetails/>}/>
         <Route path='/pokemon/random' element={<RandomPokemon/>}/>
