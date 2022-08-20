@@ -20,6 +20,7 @@ import AllPokemonGames from './pages/pokemons/AllPokemonGames';
 import SingleGame from './pages/pokemons/SingleGame';
 import PokemonNews from './pages/pokemons/PokemonNews';
 import UpdatePostForm from './pages/pokemons/UpdatePostForm';
+import CreateComments from './components/CreateComments';
 
 function App() {
   return (

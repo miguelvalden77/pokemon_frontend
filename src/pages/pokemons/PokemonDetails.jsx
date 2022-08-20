@@ -35,6 +35,7 @@ function PokemonDetails() {
 
       <article>
         <h3>{pokemon.name}</h3>
+        <img src={pokemon.sprites.front_default} alt="foto" />
       </article>
 
     </div>
