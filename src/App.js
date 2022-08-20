@@ -36,11 +36,11 @@ function App() {
         <Route path='/profile' element={<IsPrivate> <Profile/> </IsPrivate>}/>
         <Route path='/pokemon/all' element={<AllPokemons/>}/>
         <Route path='/pokemon/:id/details' element={<IsPrivate> <PokemonDetails/> </IsPrivate>}/>
-        <Route path='/pokemon/random' element={<RandomPokemon/>}/>
-        <Route path='/pokemon/games' element={<AllPokemonGames/>}/>
-        <Route path='/pokemon/:url/games' element={<SingleGame/>}/>
-        <Route path='/pokemon/news' element={<PokemonNews/>}/>
-        <Route path='/pokemon/:id/news' element={<UpdatePostForm/>}/>
+        <Route path='/pokemon/random' element={<IsPrivate> <RandomPokemon/> </IsPrivate>}/>
+        <Route path='/pokemon/games' element={<IsPrivate> <AllPokemonGames/> </IsPrivate>}/>
+        <Route path='/pokemon/:url/games' element={<IsPrivate> <SingleGame/> </IsPrivate>}/>
+        <Route path='/pokemon/news' element={<IsPrivate><PokemonNews/></IsPrivate>}/>
+        <Route path='/pokemon/:id/news' element={<IsPrivate><UpdatePostForm/></IsPrivate>}/>
         <Route path='/register' element={<Register/>}/>
         <Route path='/login' element={<Login/>}/>
 
