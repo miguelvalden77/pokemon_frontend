@@ -1,7 +1,7 @@
 import service from "./config.service"
 
-const createPost = info =>{
-    return service.post("/post/create", info)
+const createPost = (info, id) =>{
+    return service.post(`/post/${id}/create`, info)
 }
 
 const getPost = ()=>{

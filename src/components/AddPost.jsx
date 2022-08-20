@@ -2,7 +2,7 @@ import { useState, useContext } from 'react'
 import { createPost } from '../services/post.services'
 import {AuthContext} from "../context/auth.context"
 
-function AddPost() {
+function AddPost({id}) {
 
     const {user} = useContext(AuthContext)
 
@@ -13,7 +13,7 @@ function AddPost() {
     const handleSubmit = e => {
         e.preventDefault()
         const info = {title, description, picture, owner: user._id}
-        createPost(info)
+        createPost(info, id)
     }
 
   return (

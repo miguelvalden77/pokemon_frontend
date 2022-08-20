@@ -40,12 +40,25 @@ function PokemonNews() {
         }
     }
 
+    const deleteThePost = async (obj)=>{
+        try{
+            if(obj.owner === user._id){
+                await deletePost(obj._id)
+                getData()
+                return
+            }
+        }
+        catch(error){
+            console.log(error)
+        }
+    }
+
   return (
     <main>
 
         <h3>Pokemon news</h3>
 
-        <AddPost/>
+        <AddPost id={user._id}/>
 
         {
             news.map(e=>{
@@ -63,10 +76,7 @@ function PokemonNews() {
                             })
                         }
                     </section>
-                    <button onClick={async ()=>{
-                        await deletePost(e._id)
-                        getData()
-                    }}>Delete</button>
+                    <button onClick={async ()=> deleteThePost(e)}>Delete</button>
                     <Link to={`/pokemon/${e._id}/news`}><button>Update</button></Link>
                 </article>
             })
