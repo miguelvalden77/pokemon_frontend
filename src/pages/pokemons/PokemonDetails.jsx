@@ -33,8 +33,11 @@ const PokemonDetails = ()=> {
 
   const addToFav = async ()=>{
     try{
-      const info = {userId: user._id, name: id}
-      await addPokemon(info)
+      if(!user.pokemons.includes(id)){
+        const info = {userId: user._id, name: id}
+        await addPokemon(info)
+        return
+      }
     }
     catch(error){
       console.log(error)

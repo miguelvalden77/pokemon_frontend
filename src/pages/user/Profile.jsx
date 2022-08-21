@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom"
 import {AuthContext} from "../../context/auth.context"
 import { getAPokemon } from "../../services/pokemon.services"
 import { getAPost } from "../../services/post.services"
-import { getUser } from "../../services/user.service"
 
 const Profile = ()=> {
 
@@ -18,17 +17,16 @@ const Profile = ()=> {
     getMyPokemons(user.pokemons)
   }, [])
 
-  // Renderizar posts en perfil, pero primero hacer que
   const getPosts = async (arr)=>{
     try{
       if(user.posts.length > 0){
         const newArr = []
         arr.forEach(async e=>{
           const post = await getAPost(e)
-          //console.log(post.data)
           newArr.push(post.data)
+          setPosts(newArr)
       })
-      setPosts(newArr)
+      console.log(posts)
       setIsFetching(false)
       return
       }
@@ -47,9 +45,8 @@ const Profile = ()=> {
           const poke = await getAPokemon(e)
           newArr.push(poke.data)
           setPokemons(newArr)
-          console.log(pokemons)
           return
-      })  
+        })  
       }
       
     }
@@ -70,7 +67,7 @@ const Profile = ()=> {
           <h4>Tus posts</h4>
           {
           posts && posts.map(e=>{
-              return <h3 key={e.title}>{e.title}</h3>
+              return <h3 key={e._id}>{e.title}</h3>
             })
           }
 

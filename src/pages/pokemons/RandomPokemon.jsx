@@ -31,12 +31,10 @@ function RandomPokemon() {
     const handleChange = e => setPokeName(e.target.value)
     const handleSubmit = e =>{
         e.preventDefault()
-        if(pokeName === randomPokemon.name){
+        if(pokeName.toLocaleLowerCase().trim() === randomPokemon.name.toLocaleLowerCase()){
             setResponse("Correcto")
-            console.log("Correcto")
         }else{
             setResponse("Incorrecto")
-            console.log("No es correcto")
         }
     }
 
