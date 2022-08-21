@@ -76,8 +76,13 @@ function PokemonNews() {
                             })
                         }
                     </section>
-                    <button onClick={async ()=> deleteThePost(e)}>Delete</button>
-                    <Link to={`/pokemon/${e._id}/news`}><button>Update</button></Link>
+                    {
+                        user._id === e.owner && <button onClick={async ()=> deleteThePost(e)}>Delete</button>
+                    } 
+                    {
+                         user._id === e.owner && <Link to={`/pokemon/${e._id}/news`}><button>Update</button></Link>
+                    }
+                    
                 </article>
             })
         }

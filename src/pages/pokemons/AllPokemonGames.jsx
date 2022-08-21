@@ -18,6 +18,30 @@ function AllPokemonGames() {
             <Link to={"/pokemon/pokeclicker-io/games"}><button>Jugar</button></Link>
         </article>
 
+        <article>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4tyoHn0WpK4ddYO5IVFWRV9K6xIuqi6pLq34GdHCCAecJI-oCyWcpNR0cYnJj6TTa-dk&usqp=CAU" alt="foto" width={330} height={200} />
+          <h3>Pokemon Unbound</h3>
+          <Link to={"/pokemon/pokemon-unbound/games"}><button>Jugar</button></Link>
+        </article>
+
+        <article>
+          <img src="https://www2.minijuegosgratis.com/v3/games/thumbnails/219327_1.jpg" alt="foto" width={330} height={200} />
+          <h3>Pokemon Clover</h3>
+          <Link to={"/pokemon/pokemon-clover/games"}><button>Jugar</button></Link>
+        </article>
+
+        <article>
+          <img src="https://www2.minijuegosgratis.com/v3/games/thumbnails/207822_1.jpg" alt="foto" width={330} height={200} />
+          <h3>Pokemon Dark Rising 2</h3>
+          <Link to={"/pokemon/pokemon-dark-rising-2/games"}><button>Jugar</button></Link>
+        </article>
+
+        <article>
+          <img src="https://www5.minijuegosgratis.com/v3/games/thumbnails/208310_1.jpg" alt="foto" width={330} height={200} />
+          <h3>Pokemon Sapphire</h3>
+          <Link to={"/pokemon/pokemon-sapphire/games"}><button>Jugar</button></Link>
+        </article>
+
     </main>
   )
 }

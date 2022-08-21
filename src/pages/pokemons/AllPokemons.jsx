@@ -138,7 +138,7 @@ function AllPokemons(){
         PokeArr.push(pokemon.data)
       }
       setPokemons(PokeArr)
-      setVisiblePokemons(pokemons)
+      setVisiblePokemons(PokeArr)
       setIsFetching(false)
     }
     catch(error){

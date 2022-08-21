@@ -5,7 +5,7 @@ function RandomPokemon() {
 
     const [randomPokemon, setRandomPokemon] = useState(null)
     const [pokeName, setPokeName] = useState("")
-    const [response, setResponse] = useState(false)
+    const [response, setResponse] = useState(null)
 
     // useEffect(()=>{
     //     getPokeArr()
@@ -13,7 +13,7 @@ function RandomPokemon() {
 
     const getPokeArr = async ()=>{
 
-        setResponse(false)
+        setResponse(null)
         setPokeName("")
         try{
             const pokeArr = await allPokemonsRandom()
@@ -32,10 +32,10 @@ function RandomPokemon() {
     const handleSubmit = e =>{
         e.preventDefault()
         if(pokeName === randomPokemon.name){
-            setResponse(true)
+            setResponse("Correcto")
             console.log("Correcto")
         }else{
-            setResponse(false)
+            setResponse("Incorrecto")
             console.log("No es correcto")
         }
     }
@@ -51,7 +51,7 @@ function RandomPokemon() {
         </article>
         }
 
-        {response && <p>Correcto</p>}
+        {<p>{response}</p>}
 
         <button onClick={getPokeArr}>Get a random Pokemon</button>
 

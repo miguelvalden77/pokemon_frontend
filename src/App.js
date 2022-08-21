@@ -23,6 +23,7 @@ import UpdatePostForm from './pages/pokemons/UpdatePostForm';
 import Profile from "./pages/user/Profile"
 import CreateComments from './components/CreateComments';
 import IsPrivate from './components/IsPrivate';
+import NonUser from './components/NonUser';
 
 function App() {
   return (
@@ -41,8 +42,8 @@ function App() {
         <Route path='/pokemon/:url/games' element={<IsPrivate> <SingleGame/> </IsPrivate>}/>
         <Route path='/pokemon/news' element={<IsPrivate><PokemonNews/></IsPrivate>}/>
         <Route path='/pokemon/:id/news' element={<IsPrivate><UpdatePostForm/></IsPrivate>}/>
-        <Route path='/register' element={<Register/>}/>
-        <Route path='/login' element={<Login/>}/>
+        <Route path='/register' element={<NonUser><Register/></NonUser>}/>
+        <Route path='/login' element={<NonUser><Login/></NonUser>}/>
 
         {/* Errors */}
         <Route path='/*' element={<NotFound/>}/>
