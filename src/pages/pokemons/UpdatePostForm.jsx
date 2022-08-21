@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { getAPost, updatePost } from '../../services/post.services'
 import {useParams, useNavigate} from "react-router-dom"
+import {AuthContext} from "../../context/auth.context"
 
 function UpdatePostForm() {
+
+  const {user} = useContext(AuthContext)
 
   const {id} = useParams()
   const navigate = useNavigate()
@@ -34,8 +37,13 @@ function UpdatePostForm() {
     const info = {title, description, picture}
 
     try{
-      await updatePost(id, info)
-      navigate("/pokemon/news")
+
+      const post = await getAPost(id)
+      console.log(post.data.owner)
+      if(user._id === post.data.owner._id){
+        await updatePost(id, info)
+        navigate("/pokemon/news")
+      }
     }
     catch(error){
       console.log(error)

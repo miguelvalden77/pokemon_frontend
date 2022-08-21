@@ -4,4 +4,8 @@ const addPokemon = (info) =>{
     return service.post(`/user/add/pokemon`, info)
 }
 
-export {addPokemon}
+const getUser = (id) =>{
+    return service.get(`/user/${id}`)
+}
+
+export {addPokemon, getUser}
