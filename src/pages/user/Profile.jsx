@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import {AuthContext} from "../../context/auth.context"
+import { getAPokemon } from "../../services/pokemon.services"
 import { getAPost } from "../../services/post.services"
 import { getUser } from "../../services/user.service"
 
@@ -8,25 +9,49 @@ const Profile = ()=> {
 
   const {user, isUserActive} = useContext(AuthContext)
   const navigate = useNavigate()
-  const [posts, setPosts] = useState([])
+  const [posts, setPosts] = useState(null)
+  const [pokemons, setPokemons] = useState([])
   const [isFetching, setIsFetching] = useState(true)
 
   useEffect(()=>{
     getPosts(user.posts)
+    getMyPokemons(user.pokemons)
   }, [])
 
   // Renderizar posts en perfil, pero primero hacer que
   const getPosts = async (arr)=>{
     try{
-      const newArr = []
-      arr.forEach(async e=>{
-        const post = await getAPost(e)
-        //console.log(post.data)
-        newArr.push(post.data)
+      if(user.posts.length > 0){
+        const newArr = []
+        arr.forEach(async e=>{
+          const post = await getAPost(e)
+          //console.log(post.data)
+          newArr.push(post.data)
       })
       setPosts(newArr)
-      console.log(posts)
       setIsFetching(false)
+      return
+      }
+      setIsFetching(false)
+    }
+    catch(error){
+      console.log(error)
+    }
+  }
+
+  const getMyPokemons = async (arr)=>{
+    try{
+      if(user.pokemons.length > 0){
+        const newArr = []
+        arr.forEach(async e=>{
+          const poke = await getAPokemon(e)
+          newArr.push(poke.data)
+          setPokemons(newArr)
+          console.log(pokemons)
+          return
+      })  
+      }
+      
     }
     catch(error){
       console.log(error)
@@ -44,8 +69,18 @@ const Profile = ()=> {
 
           <h4>Tus posts</h4>
           {
-            posts.map(e=>{
+          posts && posts.map(e=>{
               return <h3 key={e.title}>{e.title}</h3>
+            })
+          }
+
+          <h4>Tus pokemons</h4>
+          {
+          pokemons && pokemons.map(e=>{
+              return <article key={e.id}>
+                <img src={e.sprites.front_default} alt="foto" />
+                <h4>{e.name}</h4>
+              </article>
             })
           }
           

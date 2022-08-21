@@ -8,7 +8,7 @@ function SingleGame() {
   return (
     <main>
         <article>
-             <iframe src={`https://www.minijuegos.com/embed/${url}`} style={{height: "100%", width:"100%"}} allowfullscreen></iframe>
+             <iframe src={`https://www.minijuegos.com/embed/${url}`} style={{height: "100%", width:"100%"}} allowFullScreen></iframe>
         </article>
     </main>
   )

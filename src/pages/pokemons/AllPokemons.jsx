@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { getAllPokemons, getAPokemon } from '../../services/pokemon.services'
 import {Link} from "react-router-dom"
 import axios from 'axios'
+import Search from '../../components/Search'
 
 // function AllPokemons() {
 
@@ -119,7 +120,9 @@ import axios from 'axios'
 
 function AllPokemons(){
 
-  const [pokemons, setPokemons] = useState()
+  const [pokemons, setPokemons] = useState([])
+  const [visiblePokemons, setVisiblePokemons] = useState(pokemons)
+  const [search, setSearch] = useState("")
   const [isFecthing, setIsFetching] = useState(true)
 
   useEffect(()=>{
@@ -127,7 +130,7 @@ function AllPokemons(){
   }, [])
 
   const getData = async ()=>{
-    const num = 450
+    const num = 387
     try{
       const PokeArr = []
       for(let i = 1; i < num; i++){
@@ -135,12 +138,31 @@ function AllPokemons(){
         PokeArr.push(pokemon.data)
       }
       setPokemons(PokeArr)
+      setVisiblePokemons(pokemons)
       setIsFetching(false)
     }
     catch(error){
       console.log(error)
     }
   }
+
+  const filterSearch = (search)=>{
+
+    const newArr = pokemons
+    const filteredArr = newArr.filter(e =>{
+      if( e.name.includes(search.trim())){
+        return e
+      }
+    })
+    setVisiblePokemons(filteredArr)
+  }
+
+  const handleChange = e =>{
+    setSearch(e.target.value)
+    setVisiblePokemons(pokemons)
+    filterSearch(e.target.value)
+}
+
 
   if(isFecthing){
     return <h3>Cargando . . .</h3>
@@ -149,8 +171,14 @@ function AllPokemons(){
   return(
     <main>
       <h2>Pokédex</h2>
+
+      {/* //<Search filterArr={filterSearch}/> */}
+
+        <label htmlFor="search">Search</label>
+        <input onChange={handleChange} type="text" name='search' value={search}/>
+
       {
-        pokemons && pokemons.map(e=>{
+        visiblePokemons && visiblePokemons.map(e=>{
           return <article key={e.id}>
             <h3>{e.name}</h3>
             <img src={e.sprites.front_default} alt="foto" />
