@@ -27,10 +27,11 @@ function PokemonNews() {
         }
     }
 
-    const deleteTheComment = async (obj)=>{
+    const deleteTheComment = async (obj, postId)=>{
         try{
             if(obj.owner === user._id){
-                await deleteComment(obj._id)
+                const info = {userId: user._id, postId: postId}
+                await deleteComment(obj._id, info)
                 getData()
                 return
             }
@@ -70,10 +71,10 @@ function PokemonNews() {
                     <CreateComments dataFunction={getData} postId={e._id}/>
                     <section>
                         {
-                            e.comments.map((e, i)=>{
-                                return <div key={e + i}>
-                                    <p>{e.message}</p>
-                                    {e.owner === user._id && <button onClick={()=>deleteTheComment(e)}>Delete comment</button>}
+                            e.comments.map((ej, i)=>{
+                                return <div key={ej + i}>
+                                    <p>{ej.message}</p>
+                                    {ej.owner === user._id && <button onClick={()=>deleteTheComment(ej, e._id)}>Delete comment</button>}
                                 </div>
                             })
                         }

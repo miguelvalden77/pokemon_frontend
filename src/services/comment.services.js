@@ -5,8 +5,8 @@ const createComment = info =>{
     return service.post("/comment/create", info)
 }
 
-const deleteComment = id =>{
-    return service.delete(`/comment/${id}/delete`)
+const deleteComment = (id, info) =>{
+    return service.post(`/comment/${id}/delete`, info)
 }
 
 

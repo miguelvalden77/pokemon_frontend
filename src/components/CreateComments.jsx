@@ -15,6 +15,7 @@ function CreateComments({postId, dataFunction}) {
     const info = {message, postId, userId: user._id}
     await createComment(info)
     dataFunction()
+    setMessage("")
   }
 
   return (

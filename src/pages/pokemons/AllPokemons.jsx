@@ -3,6 +3,7 @@ import { getAllPokemons, getAPokemon } from '../../services/pokemon.services'
 import {Link} from "react-router-dom"
 import axios from 'axios'
 import Search from '../../components/Search'
+import TypeFilter from '../../components/TypeFilter'
 
 // function AllPokemons() {
 
@@ -127,7 +128,12 @@ function AllPokemons(){
 
   useEffect(()=>{
     getData()
+    console.log(pokemons[0])
   }, [])
+
+  const allPokemonsAgain = ()=>{
+    setVisiblePokemons(pokemons)
+  }
 
   const getData = async ()=>{
     const num = 387
@@ -152,7 +158,7 @@ function AllPokemons(){
 
     const newArr = pokemons
     const filteredArr = newArr.filter(e =>{
-      if( e.name.includes(search.trim())){
+      if( e.name.includes(search.toLowerCase().trim())){
         return e
       }
     })
@@ -174,7 +180,8 @@ function AllPokemons(){
     <main>
       <h2>Pokédex</h2>
 
-      {/* //<Search filterArr={filterSearch}/> */}
+        <button onClick={allPokemonsAgain}>All pokemons</button>
+        <TypeFilter pokeArr={pokemons} setVisible={setVisiblePokemons} getData={getData}/>
 
         <label htmlFor="search">Search</label>
         <input onChange={handleChange} type="text" name='search' value={search}/>

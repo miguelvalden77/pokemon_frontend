@@ -9,7 +9,7 @@ const getUser = (id) =>{
 }
 
 const deletePokemon = (name, id)=>{
-    return service.patch(`/user/${name}/pokemon`, id)
+    return service.post(`/user/${name}/pokemon`, id)
 }
 
 export {addPokemon, getUser, deletePokemon}
