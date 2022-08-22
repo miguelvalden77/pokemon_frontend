@@ -10,6 +10,7 @@ function DeletePokemon({name, dataFunction}) {
         try{
             console.log(name)
             console.log(user._id)
+            // Borrar pokemon de array
             await deletePokemon(name, user._id)
             const updatedPokemons = user.pokemons.filter(e=> e !== name)
             console.log(updatedPokemons)
