@@ -127,9 +127,33 @@ function AllPokemons(){
   const [isFecthing, setIsFetching] = useState(true)
 
   useEffect(()=>{
+    //firstDataCall()
     getData()
-    console.log(pokemons[0])
   }, [])
+
+  const firstDataCall = async ()=>{
+
+    console.log(localStorage.length)
+    try{
+      if(localStorage.length < 2){
+        localStorage.setItem("pokemons", pokemons)
+        console.log("Primera renderización")
+        return
+      }
+      else{
+        console.log("Ya se ha renderizado")
+        const pokemons = localStorage.getItem("pokemons")
+        setPokemons(pokemons)
+        setVisiblePokemons(pokemons)
+        setIsFetching(false)
+        return
+      }
+    }
+    catch(error){
+      console.log(error)
+    }
+
+  }
 
   const allPokemonsAgain = ()=>{
     setVisiblePokemons(pokemons)
