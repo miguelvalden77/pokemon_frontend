@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import DeletePokemon from "../../components/DeletePokemon"
 import {AuthContext} from "../../context/auth.context"
 import { getAPokemon } from "../../services/pokemon.services"
 import { getAPost } from "../../services/post.services"
@@ -26,7 +27,6 @@ const Profile = ()=> {
           newArr.push(post.data)
           setPosts(newArr)
       })
-      console.log(posts)
       setIsFetching(false)
       return
       }
@@ -77,6 +77,7 @@ const Profile = ()=> {
               return <article key={e.id}>
                 <img src={e.sprites.front_default} alt="foto" />
                 <h4>{e.name}</h4>
+                <DeletePokemon name={e.name} dataFunction={getMyPokemons}/>
               </article>
             })
           }

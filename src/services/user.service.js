@@ -8,4 +8,8 @@ const getUser = (id) =>{
     return service.get(`/user/${id}`)
 }
 
-export {addPokemon, getUser}
+const deletePokemon = (name, id)=>{
+    return service.patch(`/user/${name}/pokemon`, id)
+}
+
+export {addPokemon, getUser, deletePokemon}

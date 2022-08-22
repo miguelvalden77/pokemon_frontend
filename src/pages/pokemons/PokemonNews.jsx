@@ -43,7 +43,9 @@ function PokemonNews() {
     const deleteThePost = async (obj)=>{
         try{
             if(obj.owner === user._id){
-                await deletePost(obj._id)
+                const deletedPost = await deletePost(obj._id)
+                const updatedPosts = user.posts.filter(e=> e !== deletedPost.data._id)
+                user.posts = updatedPosts
                 getData()
                 return
             }
@@ -58,14 +60,14 @@ function PokemonNews() {
 
         <h3>Pokemon news</h3>
 
-        <AddPost id={user._id}/>
+        <AddPost dataFunction={getData} id={user._id}/>
 
         {
             news.map(e=>{
                 return <article key={e._id}>
                     <h3>{e.title}</h3>
                     <p>{e.description}</p>
-                    <CreateComments postId={e._id}/>
+                    <CreateComments dataFunction={getData} postId={e._id}/>
                     <section>
                         {
                             e.comments.map((e, i)=>{

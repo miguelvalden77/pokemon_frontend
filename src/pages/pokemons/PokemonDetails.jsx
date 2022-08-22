@@ -36,6 +36,7 @@ const PokemonDetails = ()=> {
       if(!user.pokemons.includes(id)){
         const info = {userId: user._id, name: id}
         await addPokemon(info)
+        user.pokemons.push(id)
         return
       }
     }

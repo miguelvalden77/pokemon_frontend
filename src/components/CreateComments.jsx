@@ -3,17 +3,18 @@ import {createComment} from '../services/comment.services'
 import {AuthContext} from "../context/auth.context"
 
 
-function CreateComments({postId}) {
+function CreateComments({postId, dataFunction}) {
 
   const {user} = useContext(AuthContext)
 
   const [message, setMessage] = useState("")
 
   const handleChange = e=> setMessage(e.target.value)
-  const handleSubmit = e=>{
+  const handleSubmit = async e=>{
     e.preventDefault()
     const info = {message, postId, userId: user._id}
-    createComment(info)
+    await createComment(info)
+    dataFunction()
   }
 
   return (

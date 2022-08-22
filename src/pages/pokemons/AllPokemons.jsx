@@ -137,9 +137,11 @@ function AllPokemons(){
         const pokemon = await axios.get(`https://pokeapi.co/api/v2/pokemon/${i}/`)
         PokeArr.push(pokemon.data)
       }
+    
       setPokemons(PokeArr)
       setVisiblePokemons(PokeArr)
       setIsFetching(false)
+      
     }
     catch(error){
       console.log(error)

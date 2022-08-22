@@ -2,7 +2,7 @@ import { useState, useContext } from 'react'
 import { createPost } from '../services/post.services'
 import {AuthContext} from "../context/auth.context"
 
-function AddPost({id}) {
+function AddPost({id, dataFunction}) {
 
     const {user} = useContext(AuthContext)
 
@@ -10,10 +10,12 @@ function AddPost({id}) {
     const {title, description, picture} = data
 
     const handleChange = e => setData({...data, [e.target.name]: e.target.value})
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault()
         const info = {title, description, picture, owner: user._id}
-        createPost(info, id)
+        const post = await createPost(info, id)
+        user.posts.push(post.data._id)
+        dataFunction()
     }
 
   return (

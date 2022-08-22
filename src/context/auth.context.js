@@ -17,7 +17,6 @@ function AuthWrapper (props){
 
         try{
             const response = await verifyService()
-            console.log(response.data)
 
             setIsUserActive(true)
             setUser(response.data)
@@ -31,7 +30,7 @@ function AuthWrapper (props){
         }
     }
 
-    const passedContext = {authenticateUser, user, isUserActive}
+    const passedContext = {authenticateUser, user, isUserActive, setUser, setIsUserActive}
 
     if(isFetching === true){
         return <h3>Is validating ...</h3>
