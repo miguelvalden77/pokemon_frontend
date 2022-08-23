@@ -177,5 +177,29 @@ img{
 }
 
 .body{
-  height: 100vh;
+  min-height: 100vh;
+}
+
+/*Pokedex*/
+.p-6{
+  padding-top: 6rem;
+}
+
+.pokedex-card{
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.6rem;
+  margin: 1rem;
+  border: 2px solid whitesmoke;
+  width: 20rem;
+  height: 10rem;
+  border-radius: 5px;
+}
+
+.pokedex-section{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
 }

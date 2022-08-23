@@ -174,13 +174,77 @@ function AllPokemons(){
     filterSearch(e.target.value)
 }
 
+const colorType = (type)=>{
+  switch (type) {
+    case "grass":
+      return {backgroundColor: "green"}
+    
+    case "fire":
+        return {backgroundColor: "red"}
+
+    case "bug":
+      return {backgroundColor: "yellowgreen"}
+
+    case "water":
+      return {backgroundColor: "darkblue"}
+
+    case "rock":
+      return {backgroundColor: "darkgoldenrod"}
+
+    case "steel":
+      return {backgroundColor: "steelblue"}
+
+    case "flying":
+      return {backgroundColor: "lightgray"}
+
+    case "fairy":
+      return {backgroundColor: "pink"}
+
+    case "electric":
+      return {backgroundColor: "yellow"}
+
+    case "poison":
+      return {backgroundColor: "purple"}
+
+    case "ghost":
+      return {backgroundColor: "darkpurple"}
+
+    case "psychic":
+      return {backgroundColor: "#F11D68"}
+    
+    case "dragon":
+      return {backgroundColor: "#aa00ff"}
+
+    case "ground":
+      return {backgroundColor: "#ffb700"}
+
+    case "normal":
+      return {backgroundColor: "grey"}
+
+    case "fighting":
+      return {backgroundColor: "#ad1f4e"}
+
+    case "ice":
+      return {backgroundColor: "#9ef8fa"}
+
+    case "dark":
+      return {backgroundColor: "#454854"}
+    
+    // case "ghost":
+    //   return {backgroundColor: "red"}
+
+    default: return null
+      break;
+  }
+}
+
 
   if(isFecthing){
     return <h3>Cargando . . .</h3>
   }
 
   return(
-    <main>
+    <main className='dark body p-6'>
       <h2>Pokédex</h2>
 
         <button onClick={allPokemonsAgain}>All pokemons</button>
@@ -189,20 +253,27 @@ function AllPokemons(){
         <label htmlFor="search">Search</label>
         <input onChange={handleChange} type="text" name='search' value={search}/>
 
+      <section className='pokedex-section'>
       {
         visiblePokemons && visiblePokemons.map(e=>{
-          return <article key={e.id}>
-            <h3>{e.name}</h3>
-            <img src={e.sprites.front_default} alt="foto" />
-            {
-              e.types.map(obj=>{
-                return <h4 key={obj.type.name + e.id}>{obj.type.name}</h4>
-              })
-            }
-            <Link to={`/pokemon/${e.name}/details`}><button>Details</button></Link>
-          </article>
+          return  <article className='pokedex-card' key={e.id}>
+                      <div>
+                        <img src={e.sprites.front_default} alt="foto" />
+                      </div>
+                      <div>
+                        <h5 style={{color: "whitesmoke"}}>{e.name}</h5>
+                        {
+                        e.types.map(obj=>{
+                          
+                          return <h4 style={colorType(obj.type.name)} key={obj.type.name + e.id}>{obj.type.name}</h4>
+                        })
+                        }
+                      </div>
+                      <Link to={`/pokemon/${e.name}/details`}><button>Details</button></Link>
+                  </article>
         })
       }
+      </section>
     </main>
   )
 
