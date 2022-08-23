@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { getAllPokemons, getAPokemon } from '../../services/pokemon.services'
 import {Link} from "react-router-dom"
 import axios from 'axios'
 import Search from '../../components/Search'
 import TypeFilter from '../../components/TypeFilter'
+import {AuthContext} from "../../context/auth.context"
 
 // function AllPokemons() {
 
@@ -121,6 +122,8 @@ import TypeFilter from '../../components/TypeFilter'
 
 function AllPokemons(){
 
+  const {pokemones} = useContext(AuthContext)
+
   const [pokemons, setPokemons] = useState([])
   const [visiblePokemons, setVisiblePokemons] = useState(pokemons)
   const [search, setSearch] = useState("")
@@ -131,45 +134,21 @@ function AllPokemons(){
     getData()
   }, [])
 
-  const firstDataCall = async ()=>{
-
-    console.log(localStorage.length)
-    try{
-      if(localStorage.length < 2){
-        localStorage.setItem("pokemons", pokemons)
-        console.log("Primera renderización")
-        return
-      }
-      else{
-        console.log("Ya se ha renderizado")
-        const pokemons = localStorage.getItem("pokemons")
-        setPokemons(pokemons)
-        setVisiblePokemons(pokemons)
-        setIsFetching(false)
-        return
-      }
-    }
-    catch(error){
-      console.log(error)
-    }
-
-  }
-
   const allPokemonsAgain = ()=>{
     setVisiblePokemons(pokemons)
   }
 
   const getData = async ()=>{
-    const num = 387
+    //const num = 387
     try{
-      const PokeArr = []
-      for(let i = 1; i < num; i++){
-        const pokemon = await axios.get(`https://pokeapi.co/api/v2/pokemon/${i}/`)
-        PokeArr.push(pokemon.data)
-      }
+      // const PokeArr = []
+      // for(let i = 1; i < num; i++){
+      //   const pokemon = await axios.get(`https://pokeapi.co/api/v2/pokemon/${i}/`)
+      //   PokeArr.push(pokemon.data)
+      // }
     
-      setPokemons(PokeArr)
-      setVisiblePokemons(PokeArr)
+      setPokemons(pokemones)
+      setVisiblePokemons(pokemones)
       setIsFetching(false)
       
     }
@@ -215,6 +194,11 @@ function AllPokemons(){
           return <article key={e.id}>
             <h3>{e.name}</h3>
             <img src={e.sprites.front_default} alt="foto" />
+            {
+              e.types.map(obj=>{
+                return <h4 key={obj.type.name + e.id}>{obj.type.name}</h4>
+              })
+            }
             <Link to={`/pokemon/${e.name}/details`}><button>Details</button></Link>
           </article>
         })

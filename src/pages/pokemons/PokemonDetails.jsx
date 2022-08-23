@@ -50,12 +50,31 @@ const PokemonDetails = ()=> {
     return <h3>Cargando . . .</h3>
   }
 
+  //console.log(pokemon.stats)
+
   return (
     <div>
 
       <article>
         <h3>{pokemon.name}</h3>
         <img src={pokemon.sprites.front_default} alt="foto" />
+        <p>Weight: {pokemon.weight}</p>
+        <p>Height: {pokemon.height}</p>
+          {
+            pokemon.stats.map(obj=>{
+                console.log(obj)
+              return <section key={obj.stat.name}>
+                <p>{obj.stat.name}: {obj.base_stat}</p>
+              </section>
+                
+              
+              // obj.map(e=>{
+              //   return <section>
+              //     <p>{e.name}: {obj.base_stat}</p>
+              //   </section>
+              // })
+            })
+          }
         <button onClick={addToFav}>Añadir a favoritos</button>
       </article>
 

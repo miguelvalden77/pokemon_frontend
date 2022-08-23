@@ -6,14 +6,12 @@ function TypeFilter({pokeArr, setVisible, getData}) {
 
     const filter = (Arr, type)=>{
         setVisible(pokeArr)
-        console.log(Arr[0].types[0])
         const newPokeArr = []
         for(let i = 0; i < Arr.length; i++){
             const pokemon = Arr[i]
             const key = Arr[i].types
             for(let i = 0; i < key.length; i++){
                 const typePoke = key[i]
-                //console.log(typePoke.type.name)
                 if(typePoke.type.name === type){
                     newPokeArr.push(pokemon)
                 }

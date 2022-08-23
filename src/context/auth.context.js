@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { verifyService } from "../services/auth.services";
+import axios from "axios"
 
 const AuthContext = createContext()
 
@@ -8,10 +9,29 @@ function AuthWrapper (props){
     const [isUserActive, setIsUserActive] = useState(false)
     const [user, setUser] = useState(null)
     const [isFetching, setIsFetching] = useState(false)
+    const [pokemones, setPokemons] = useState([])
 
     useEffect(()=>{
         authenticateUser()
+        getData()
     }, [])
+
+    const getData = async ()=>{
+        const num = 491
+        try{
+          const PokeArr = []
+          for(let i = 1; i < num; i++){
+            const pokemon = await axios.get(`https://pokeapi.co/api/v2/pokemon/${i}/`)
+            PokeArr.push(pokemon.data)
+          }
+        
+          setPokemons(PokeArr)
+          
+        }
+        catch(error){
+          console.log(error)
+        }
+      }
 
     const authenticateUser = async ()=>{
 
@@ -30,7 +50,7 @@ function AuthWrapper (props){
         }
     }
 
-    const passedContext = {authenticateUser, user, isUserActive, setUser, setIsUserActive}
+    const passedContext = {authenticateUser, user, isUserActive, setUser, setIsUserActive, pokemones}
 
     if(isFetching === true){
         return <h3>Is validating ...</h3>

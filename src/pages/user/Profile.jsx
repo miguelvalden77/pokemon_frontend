@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import DeletePokemon from "../../components/DeletePokemon"
 import {AuthContext} from "../../context/auth.context"
 import { getAPokemon } from "../../services/pokemon.services"
@@ -77,6 +77,7 @@ const Profile = ()=> {
               return <article key={e.id}>
                 <img src={e.sprites.front_default} alt="foto" />
                 <h4>{e.name}</h4>
+                <Link to={`/pokemon/${e.name}/details`}><button>Details</button></Link>
                 <DeletePokemon name={e.name} dataFunction={getMyPokemons}/>
               </article>
             })
