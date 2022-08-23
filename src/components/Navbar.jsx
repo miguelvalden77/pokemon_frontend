@@ -8,6 +8,9 @@ import news from "../img/news-logo.png"
 import game from "../img/game.png"
 import random from "../img/random.jpg"
 
+// Bootstrap
+import { Button } from "react-bootstrap"
+
 function Navbar() {
 
   const {isUserActive, authenticateUser} = useContext(AuthContext)
@@ -33,11 +36,13 @@ function Navbar() {
     )
   } else{
     return (
-      <nav>
-        <NavLink to={"/"}>Home</NavLink>
-        <NavLink to={"/pokemon/all"}>Pokédex</NavLink>
-        <NavLink to={"/register"}>Register</NavLink>
-        <NavLink to={"/login"}>Login</NavLink>
+      <nav className="no-logged-nav">
+        <NavLink to={"/"}><Button variant="outline-secondary">Home</Button></NavLink>
+        <div className="button-container">
+          <NavLink  to={"/pokemon/all"}><Button variant="outline-danger">Pokedex</Button></NavLink>
+          <NavLink  to={"/register"}><Button variant="outline-success">Register</Button></NavLink>
+          <NavLink  to={"/login"}><Button variant="outline-primary">Login</Button></NavLink>
+        </div>
       </nav>
     )
   }

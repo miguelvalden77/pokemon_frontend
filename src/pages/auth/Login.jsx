@@ -44,21 +44,25 @@ function Login() {
   }
 
   return (
-    <div>
+    <div className='main-form dark body'>
 
-      <h3>Login</h3>
+      {/* <h3>Login</h3> */}
 
       {errorMessage && <p>{errorMessage}</p>}
 
-      <form onSubmit={handleSubmit}>
-        
-        <label htmlFor="username">Username</label>
-        <input onChange={handleChange} type="text" name='username' value={username} />
+      <form onSubmit={handleSubmit} className="register-form">
+        <h3 className='register-title'>Login</h3>
+        <div className='input-container'>
+          <p className="label">Username</p>
+          <input className='input' onChange={handleChange} type="text" name='username' value={username} />
+        </div>
 
-        <label htmlFor="password">Contraseña</label>
-        <input onChange={handleChange} type="password" name='password' value={password}/>
+        <div className='input-container'>
+          <p className="label">Contraseña</p>
+          <input className='input' onChange={handleChange} type="password" name='password' value={password}/>
+        </div>
 
-        <button>Join us!</button>
+        <button className='form-button'>Join us!</button>
 
       </form>
 

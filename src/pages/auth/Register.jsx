@@ -33,24 +33,30 @@ function Register() {
   }
 
   return (
-    <div>
+    <div className='main-form dark body'>
 
-      <h3>Register</h3>
 
       {errorMessage && <p>{errorMessage}</p>}
 
-      <form onSubmit={handleSubmit}>
+      <form className='register-form' onSubmit={handleSubmit}>
         
-        <label htmlFor="username">Username</label>
-        <input onChange={handleChange} type="text" name='username' value={username} />
+      <h3 className='register-title'>Register</h3>
+        <div className='input-container'>
+          <p className='label'>Username</p>
+          <input className='input' onChange={handleChange} type="text" name='username' value={username} />
+        </div>
 
-        <label htmlFor="email">Email</label>
-        <input onChange={handleChange} type="text" name='email' value={email} />
+        <div className='input-container'>
+          <p className='label'>Email</p>
+          <input className='input' onChange={handleChange} type="text" name='email' value={email} />
+        </div>
 
-        <label htmlFor="password">Contraseña</label>
-        <input onChange={handleChange} type="password" name='password' value={password} />
+        <div className='input-container'>
+          <p className='label'>Contraseña</p>
+          <input className='input' onChange={handleChange} type="password" name='password' value={password} />
+        </div>
 
-        <button>Join us!</button>
+        <button className='form-button'>Join us!</button>
 
       </form>
 
