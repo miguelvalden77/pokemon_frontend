@@ -3,6 +3,7 @@ import { getAPost, updatePost } from '../../services/post.services'
 import {useParams, useNavigate} from "react-router-dom"
 import {AuthContext} from "../../context/auth.context"
 import {Button} from "react-bootstrap"
+import { upload } from '../../services/upload.services'
 
 function UpdatePostForm() {
 
@@ -11,9 +12,10 @@ function UpdatePostForm() {
   const {id} = useParams()
   const navigate = useNavigate()
 
-  const [data, setData] = useState({title: "", description: "", picture: ""})
-  const {title, description, picture} = data
+  const [data, setData] = useState({title: "", description: ""})
+  const {title, description} = data
   const [isFecthing, setIsFetching] = useState(true)
+  const [urlImage, setUrlImage] = useState("")
 
   useEffect(()=>{
     getValues()
@@ -37,7 +39,7 @@ function UpdatePostForm() {
   const handleSubmit = async e => {
 
     e.preventDefault()
-    const info = {title, description, picture}
+    const info = {title, description, picture: urlImage}
 
     try{
 
@@ -53,6 +55,24 @@ function UpdatePostForm() {
     }
   }
 
+  const handleImgUpload = async e=>{
+
+    console.log(e.target.files[0])
+
+    const form = new FormData()
+    form.append("image", e.target.files[0])
+
+    try{
+      const response = await upload(form)
+      console.log(response)
+      setUrlImage(response.data.imageUrl)
+    }
+    catch(error){
+      console.log(error)
+      //Poner despues los navigate
+    }
+  }
+
   if(isFecthing){
     return <h3 className='body dark p-6'>Cargando . . .</h3>
 }
@@ -64,8 +84,13 @@ function UpdatePostForm() {
         <p className='label'>Title</p>
         <input className='input' onChange={handleChange} type="text" name='title' value={title}/>
 
-        <p className='label'>Picture</p>
-        <input className='input' onChange={handleChange} type="text" name='picture' value={picture}/>
+        {/* <p className='label'>Picture</p>
+        <input className='input' onChange={handleChange} type="text" name='picture' value={picture}/> */}
+        <div className='input-container'>
+            <p className='label post-picture'>Picture</p>
+            <input className='input picture-input' onChange={handleImgUpload} type="file" />
+            <img style={{margin: "auto", paddingTop: "0.5rem"}} src={urlImage} alt="foto" width={150} height={190}/>
+        </div>
 
         <p className='label'>Description</p>
         <input className='input' onChange={handleChange} type="text" name='description' value={description}/>

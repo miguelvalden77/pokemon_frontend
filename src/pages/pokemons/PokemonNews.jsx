@@ -14,6 +14,7 @@ function PokemonNews() {
 
     const [news, setNews] = useState([])
     const [isFecthing, setIsFetching] = useState(true)
+    const [click, setClick] = useState(false)
 
     useEffect(()=>{
         getData()
@@ -23,7 +24,7 @@ function PokemonNews() {
     const getData = async ()=>{
         try{
             const response = await getPost()
-            setNews(response.data)
+            setNews(response.data.reverse())
         }
         catch(error){
             console.log(error)
@@ -59,6 +60,8 @@ function PokemonNews() {
         }
     }
 
+    const handleClick = ()=> setClick(true)
+
     if(isFecthing){
         return <h3 className='body dark p-6'>Cargando . . .</h3>
     }
@@ -67,8 +70,10 @@ function PokemonNews() {
     <main className='body dark p-6'>
 
         <h3 style={{color: "whitesmoke"}}>Pokemon news</h3>
-
-        <AddPost dataFunction={getData} id={user._id}/>
+        
+        {
+            click ? <AddPost setTheClick={setClick} dataFunction={getData} id={user._id}/> : <Button style={{marginBottom: "1.5rem"}} variant='outline-success' onClick={handleClick}>Upload a new!</Button>
+        }
         <div style={{display: "flex", flexWrap: "wrap", gap: "2rem", justifyContent: "space-evenly", alignItems: "center"}}>
         {
             news.map(e=>{

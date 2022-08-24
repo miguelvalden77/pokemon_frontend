@@ -3,10 +3,13 @@ import { createPost } from '../services/post.services'
 import {AuthContext} from "../context/auth.context"
 import {Button} from "react-bootstrap"
 import { upload } from '../services/upload.services'
+import {useNavigate} from "react-router-dom"
 
-function AddPost({id, dataFunction}) {
+function AddPost({id, dataFunction, setTheClick}) {
 
     const {user} = useContext(AuthContext)
+
+    const navigate = useNavigate()
 
     const [data, setData] = useState({title: "", description: ""})
     const {title, description} = data
@@ -21,8 +24,11 @@ function AddPost({id, dataFunction}) {
         try{
           const post = await createPost(info, id)
           user.posts.push(post.data._id)
-          console.log("Click")
           dataFunction()
+          navigate("/pokemon/news")
+          setData({title: "", description: ""})
+          setUrlImage("")
+          setTheClick(false)
         }
         catch(error){
           console.log(error)

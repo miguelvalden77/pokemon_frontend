@@ -69,13 +69,16 @@ const Profile = ()=> {
           <h4 style={{color: "whitesmoke"}}>Tus posts</h4>
           <section style={{display: "flex", gap: "1rem", justifyContent: "center", paddingBottom: "2rem"}}>
           {
-          posts && posts.map(e=>{
+          posts ? posts.map(e=>{
               return <div key={e.title}>
                   <img src={e.picture} alt="foto" width={160} height={190} />
                   <h3 style={{color: "whitesmoke"}}>{e.title}</h3>
                   <Link to={`/pokemon/${e._id}/news`}> <Button variant='outline-secondary'>Update your post</Button></Link>
               </div>
-            })
+            }) :  <div>
+              <p style={{color: "whitesmoke"}}>Sube tu primera noticia</p> 
+              <Link to={'/pokemon/news'}><Button variant="outline-primary">News</Button></Link>
+            </div>
           }
           </section>
           
@@ -83,14 +86,17 @@ const Profile = ()=> {
           <h4 style={{color: "whitesmoke"}}>Tus pokemons</h4>
           <section style={{display: "flex", gap: "1.5rem", justifyContent: "center", alignItems: "center"}}>
           {
-          pokemons && pokemons.map(e=>{
+          pokemons.length > 0 ? pokemons.map(e=>{
               return <article style={{display: "flex", alignItems: "center", flexDirection: "column", gap: "0.5rem", justifyContent: "center", paddingBottom: "2rem"}} key={e.id}>
                 <img src={e.sprites.front_default} alt="foto" />
                 <h4 style={{color: "whitesmoke"}}>{e.name}</h4>
                 <Link to={`/pokemon/${e.name}/details`}><Button variant="outline-primary">Details</Button></Link>
                 <DeletePokemon name={e.name} dataFunction={getMyPokemons}/>
               </article>
-            })
+            }) :  <div>
+            <p style={{color: "whitesmoke"}}>Add your first pokemon</p> 
+            <Link to={'/pokemon/all'}><Button variant="outline-primary">Pokedex</Button></Link>
+          </div>
           }
           </section>
           
