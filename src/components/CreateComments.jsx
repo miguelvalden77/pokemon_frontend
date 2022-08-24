@@ -1,6 +1,7 @@
 import { useEffect, useState, useContext } from 'react'
 import {createComment} from '../services/comment.services'
 import {AuthContext} from "../context/auth.context"
+import {Button} from "react-bootstrap"
 
 
 function CreateComments({postId, dataFunction}) {
@@ -21,11 +22,11 @@ function CreateComments({postId, dataFunction}) {
   return (
     <main>
 
-        <form onSubmit={handleSubmit}>
+        <form style={{display: "flex", flexDirection: "column", gap: "1rem", alignItems: "center"}}>
 
-          <textarea onChange={handleChange} value={message} name="message" cols="30" rows="10"></textarea>
+          <textarea style={{color: "whitesmoke", background: "black", borderRadius: "5px", padding: "0.5rem"}} onChange={handleChange} value={message} name="message" cols="30" rows="4"></textarea>
           
-          <button>Create comment</button>
+          <Button variant='outline-primary' onClick={handleSubmit}>Create a comment</Button>
 
         </form>
 

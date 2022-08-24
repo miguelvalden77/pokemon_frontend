@@ -5,6 +5,7 @@ import {Link} from "react-router-dom"
 import CreateComments from '../../components/CreateComments'
 import {createComment, deleteComment} from "../../services/comment.services"
 import {AuthContext} from "../../context/auth.context"
+import {Button} from "react-bootstrap"
 
 
 function PokemonNews() {
@@ -68,13 +69,28 @@ function PokemonNews() {
         <h3 style={{color: "whitesmoke"}}>Pokemon news</h3>
 
         <AddPost dataFunction={getData} id={user._id}/>
-
+        <div style={{display: "flex", flexWrap: "wrap", gap: "2rem", justifyContent: "space-evenly", alignItems: "center"}}>
         {
             news.map(e=>{
-                return <article key={e._id}>
-                    <h3>{e.title}</h3>
-                    <p>{e.description}</p>
-                    <CreateComments dataFunction={getData} postId={e._id}/>
+                return <article style={{border: "2px solid whitesmoke",
+                justifyContent: 'space-around', 
+                alignItems: "center", 
+                display: "flex", 
+                flexDirection: "column", 
+                gap: "1.5rem", 
+                width: "100%"}} key={e._id}>
+
+                    <img src={e.picture} alt="foto" width={410} height={350} />
+                    <h3 style={{color: "whitesmoke"}}>{e.title}</h3>
+                    <p style={{maxWidth: "400px"}}>{e.description}</p>
+                    <section style={{display: "flex", gap: "1.5rem"}}>
+                    {   
+                        user._id === e.owner && <Button variant='outline-danger' onClick={async ()=> deleteThePost(e)}>Delete your post</Button>
+                    } 
+                    {   
+                        user._id === e.owner && <Link to={`/pokemon/${e._id}/news`}> <Button variant='outline-secondary'>Update your post</Button></Link>
+                    }
+                    </section>
                     <section>
                         {
                             e.comments.map((ej, i)=>{
@@ -85,17 +101,12 @@ function PokemonNews() {
                             })
                         }
                     </section>
-                    {
-                        user._id === e.owner && <button onClick={async ()=> deleteThePost(e)}>Delete</button>
-                    } 
-                    {
-                        user._id === e.owner && <Link to={`/pokemon/${e._id}/news`}><button>Update</button></Link>
-                    }
                     
+                    <CreateComments dataFunction={getData} postId={e._id}/>
                 </article>
             })
-        }
-
+        } 
+        </div>
     </main>
   )
 }
