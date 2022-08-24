@@ -36,11 +36,11 @@ function Register() {
     <div className='main-form dark body'>
 
 
-      {errorMessage && <p>{errorMessage}</p>}
 
       <form className='register-form' onSubmit={handleSubmit}>
         
       <h3 className='register-title'>Register</h3>
+      {errorMessage && <p style={{color: "red"}}>{errorMessage}</p>}
         <div className='input-container'>
           <p className='label'>Username</p>
           <input className='input' onChange={handleChange} type="text" name='username' value={username} />
