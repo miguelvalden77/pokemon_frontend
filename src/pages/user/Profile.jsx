@@ -16,8 +16,8 @@ const Profile = ()=> {
   const [isFetching, setIsFetching] = useState(true)
 
   useEffect(()=>{
-    getMyPokemons(user.pokemons)
     getPosts(user.posts)
+    getMyPokemons(user.pokemons)
   }, [])
 
   const getPosts = async (arr)=>{
