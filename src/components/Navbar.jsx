@@ -24,25 +24,23 @@ function Navbar() {
 
   if(isUserActive === true){
     return(
-      <nav style={{display: "flex", justifyContent: "space-evenly", alignItems: "center"}}>
-        <NavLink to={"/"}><div className="logo logo-home"><img width={110} src={houseLogo} alt="foto"/></div></NavLink>
-        <NavLink to={"/profile"}>Profile</NavLink>
-        <NavLink to={"/pokemon/all"}><div datatype="pokedex" className="logo logo-pokedex"><img src={pokedex} alt="foto"/></div></NavLink>
-        <NavLink to={"/pokemon/random"}><div className="logo logo-random"><img src={random} alt="foto"/></div></NavLink>
-        <NavLink to={"/pokemon/games"}><div className="logo logo-game"><img src={game} alt="foto"/></div></NavLink>
-        <NavLink to={"/pokemon/news"}><div className="logo logo-game"><img src={news} alt="foto"/></div></NavLink>
-        <div onClick={handleLogout} className="logo logo-off"><img src={off} alt="foto"/></div>
+      <nav className="no-logged-nav">
+        <NavLink to={"/"}> <Button variant="outline-light">Home</Button></NavLink>
+        <NavLink to={"/profile"}><Button variant="outline-primary">Profile</Button></NavLink>
+        <NavLink to={"/pokemon/all"}><Button variant="outline-danger">Pokedex</Button></NavLink>
+        <NavLink to={"/pokemon/random"}><Button variant="outline-warning">Random</Button></NavLink>
+        <NavLink to={"/pokemon/games"}><Button variant="outline-success">Games</Button></NavLink>
+        <NavLink to={"/pokemon/news"}><Button variant="outline-info">News</Button></NavLink>
+        <Button variant="outline-secondary" onClick={handleLogout}>Logout</Button>
       </nav>
     )
   } else{
     return (
       <nav className="no-logged-nav">
         <NavLink to={"/"}><Button variant="outline-secondary">Home</Button></NavLink>
-        <div className="button-container">
           <NavLink  to={"/pokemon/all"}><Button variant="outline-danger">Pokedex</Button></NavLink>
           <NavLink  to={"/register"}><Button variant="outline-success">Register</Button></NavLink>
           <NavLink  to={"/login"}><Button variant="outline-primary">Login</Button></NavLink>
-        </div>
       </nav>
     )
   }

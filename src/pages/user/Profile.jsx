@@ -56,12 +56,12 @@ const Profile = ()=> {
   }
 
   if(isFetching){
-    return <h3>Cargando . . .</h3>
+    return <h3 className='body dark p-6'>Cargando . . .</h3>
   }
 
   if(isUserActive === true){
     return (
-      <main>
+      <main className="body dark p-6">
           <h3>Bienvenido a tu perfil {user.username}</h3>
 
           <h4>Tus posts</h4>

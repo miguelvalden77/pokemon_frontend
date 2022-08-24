@@ -5,6 +5,7 @@ import axios from 'axios'
 import Search from '../../components/Search'
 import TypeFilter from '../../components/TypeFilter'
 import {AuthContext} from "../../context/auth.context"
+import {Button} from "react-bootstrap"
 
 // function AllPokemons() {
 
@@ -240,18 +241,22 @@ const colorType = (type)=>{
 
 
   if(isFecthing){
-    return <h3>Cargando . . .</h3>
+    return <h3 className='body dark p-6'>Cargando . . .</h3>
   }
 
   return(
     <main className='dark body p-6'>
-      <h2>Pokédex</h2>
+      <h2 style={{color: "whitesmoke", marginBottom: "2rem"}}>Pokédex</h2>
 
-        <button onClick={allPokemonsAgain}>All pokemons</button>
-        <TypeFilter pokeArr={pokemons} setVisible={setVisiblePokemons} getData={getData}/>
+        <Button onClick={allPokemonsAgain} style={{marginBottom: "2rem"}} variant='outline-light'>All pokemons</Button>
 
-        <label htmlFor="search">Search</label>
-        <input onChange={handleChange} type="text" name='search' value={search}/>
+        <div style={{display: "flex", alignItems: "center", justifyContent: "space-evenly"}}>
+            <TypeFilter pokeArr={pokemons} setVisible={setVisiblePokemons}/>
+            <div display={{position: "relative"}}>
+              <label style={{color: "whitesmoke", padding: "2rem"}} htmlFor="search">Search</label>
+              <input onChange={handleChange} type="text" name='search' value={search}/>
+            </div>
+        </div>
 
       <section className='pokedex-section'>
       {
@@ -259,17 +264,17 @@ const colorType = (type)=>{
           return  <article className='pokedex-card' key={e.id}>
                       <div>
                         <img src={e.sprites.front_default} alt="foto" />
+                        <h5 style={{color: "black"}}>{e.name}</h5>
                       </div>
-                      <div>
-                        <h5 style={{color: "whitesmoke"}}>{e.name}</h5>
+                      <div style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
                         {
                         e.types.map(obj=>{
                           
-                          return <h4 style={colorType(obj.type.name)} key={obj.type.name + e.id}>{obj.type.name}</h4>
+                          return <h4 className='pokemonType' style={colorType(obj.type.name)} key={obj.type.name + e.id}>{obj.type.name}</h4>
                         })
                         }
                       </div>
-                      <Link to={`/pokemon/${e.name}/details`}><button>Details</button></Link>
+                      <Link to={`/pokemon/${e.name}/details`}><Button variant="outline-dark">Details</Button></Link>
                   </article>
         })
       }

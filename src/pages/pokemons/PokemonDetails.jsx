@@ -4,6 +4,7 @@ import { getAPokemon } from '../../services/pokemon.services'
 import {addPokemon} from "../../services/user.service"
 import { useContext } from "react"
 import {AuthContext} from "../../context/auth.context"
+import {Button} from "react-bootstrap"
 
 const PokemonDetails = ()=> {
 
@@ -47,23 +48,23 @@ const PokemonDetails = ()=> {
 
 
   if(isFetching){
-    return <h3>Cargando . . .</h3>
+    return <h3 className='body dark p-6'>Cargando . . .</h3>
   }
 
   //console.log(pokemon.stats)
 
   return (
-    <div>
+    <div className='body dark p-6'>
 
-      <article>
-        <h3>{pokemon.name}</h3>
+      <article className='detail-card'>
+        <h3>{pokemon.name}</h3>       
         <img src={pokemon.sprites.front_default} alt="foto" />
-        <p>Weight: {pokemon.weight}</p>
-        <p>Height: {pokemon.height}</p>
+        <Button variant='outline-success' style={{marginBottom: "1rem"}} onClick={addToFav}>Añadir a favoritos</Button>
+          <p style={{textAlign: "left"}}>Weight: {pokemon.weight}</p>
+          <p style={{textAlign: "left"}}>Height: {pokemon.height}</p>
           {
             pokemon.stats.map(obj=>{
-                console.log(obj)
-              return <section key={obj.stat.name}>
+              return <section style={{display: "flex", flexDirection: "column", alignItems: "flex-start"}} key={obj.stat.name}>
                 <p>{obj.stat.name}: {obj.base_stat}</p>
               </section>
                 
@@ -75,7 +76,6 @@ const PokemonDetails = ()=> {
               // })
             })
           }
-        <button onClick={addToFav}>Añadir a favoritos</button>
       </article>
 
     </div>

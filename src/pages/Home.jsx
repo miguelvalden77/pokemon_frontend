@@ -2,9 +2,19 @@ import bg1 from "../img/background-home-1.jpg"
 import bg2 from "../img/initials.jpg" 
 import bg3 from "../img/pokeballs.jpg" 
 import {Carousel} from "react-bootstrap"
+import {useState, useEffect} from "react"
 
 function Home() {
 
+  const [isFecthing, setIsFetching] = useState(true)
+
+  useEffect(()=>{
+    setIsFetching(false)
+  }, [])
+
+  if(isFecthing){
+    return <h3 className='body dark p-6'>Cargando . . .</h3>
+}
 
   return (
 

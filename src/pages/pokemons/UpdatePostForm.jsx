@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from 'react'
 import { getAPost, updatePost } from '../../services/post.services'
 import {useParams, useNavigate} from "react-router-dom"
 import {AuthContext} from "../../context/auth.context"
+import {Button} from "react-bootstrap"
 
 function UpdatePostForm() {
 
@@ -12,9 +13,11 @@ function UpdatePostForm() {
 
   const [data, setData] = useState({title: "", description: "", picture: ""})
   const {title, description, picture} = data
+  const [isFecthing, setIsFetching] = useState(true)
 
   useEffect(()=>{
     getValues()
+    setIsFetching(false)
   }, [])
 
   const getValues = async ()=>{
@@ -50,21 +53,27 @@ function UpdatePostForm() {
     }
   }
 
+  if(isFecthing){
+    return <h3 className='body dark p-6'>Cargando . . .</h3>
+}
+
   return (
-    <form onSubmit={handleSubmit}>
+    <main className='dark body main-form p-6'>
+      <form className='register-form'>
 
-      <label htmlFor="title">Title</label>
-      <input onChange={handleChange} type="text" name='title' value={title}/>
+        <p className='label'>Title</p>
+        <input className='input' onChange={handleChange} type="text" name='title' value={title}/>
 
-      <label htmlFor="picture">Picture</label>
-      <input onChange={handleChange} type="text" name='picture' value={picture}/>
+        <p className='label'>Picture</p>
+        <input className='input' onChange={handleChange} type="text" name='picture' value={picture}/>
 
-      <label htmlFor="description">Description</label>
-      <input onChange={handleChange} type="text" name='description' value={description}/>
+        <p className='label'>Description</p>
+        <input className='input' onChange={handleChange} type="text" name='description' value={description}/>
+        
+        <Button onClick={handleSubmit} variant='outline-light' className='button-form'>Update your new!</Button>
 
-      <button>Update your new!</button>
-
-    </form>
+      </form>
+    </main>
   )
 }
 

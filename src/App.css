@@ -3,8 +3,14 @@
   padding: 0;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400&display=swap');
+
 .App {
   text-align: center;
+}
+
+body{
+  font-family: "Kanit";
 }
 
 .App-logo {
@@ -107,12 +113,12 @@ img{
 
 .no-logged-nav{
   display: flex;
-  justify-content: space-around;
   align-items: center;
   padding: 1rem;
+  gap: 1.5rem;
   position: absolute;
   z-index: 10;
-  margin-left: 1rem;
+  left: 20%;
 }
 
 .button-container{
@@ -160,6 +166,11 @@ img{
   border-radius: 5px;
 }
 
+.input:focus{
+  background-color: black;
+  color: white;
+}
+
 .form-button {
   padding: 0.35rem;
   border-radius: 5px;
@@ -188,13 +199,16 @@ img{
 .pokedex-card{
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 0.5rem;
   padding: 0.6rem;
   margin: 1rem;
-  border: 2px solid whitesmoke;
+  border: none;
   width: 20rem;
   height: 10rem;
   border-radius: 5px;
+  background-color: rgb(230, 228, 228);
+  color: black;
 }
 
 .pokedex-section{
@@ -202,4 +216,38 @@ img{
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
+}
+
+/**/
+.pokemonType{
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  color: whitesmoke;
+}
+
+.button-filter{
+  padding: 0.4rem 0.6rem;
+  margin: 0 0.5rem 0 0.5rem;
+  border-radius: 10px;
+}
+
+.detail-card{
+  display: flex;
+  flex-direction: column;
+  max-width: 170px;
+  margin: auto;
+  color: whitesmoke;
+}
+
+.post{
+  padding-top: 1rem;
+}
+
+.post-label{
+  left: 5%;
+  top: -40%;
+}
+
+.textarea{
+  top: -5%;
 }

@@ -12,9 +12,11 @@ function PokemonNews() {
     const {user} = useContext(AuthContext)
 
     const [news, setNews] = useState([])
+    const [isFecthing, setIsFetching] = useState(true)
 
     useEffect(()=>{
         getData()
+        setIsFetching(false)
     }, [])
 
     const getData = async ()=>{
@@ -56,10 +58,14 @@ function PokemonNews() {
         }
     }
 
-  return (
-    <main>
+    if(isFecthing){
+        return <h3 className='body dark p-6'>Cargando . . .</h3>
+    }
 
-        <h3>Pokemon news</h3>
+  return (
+    <main className='body dark p-6'>
+
+        <h3 style={{color: "whitesmoke"}}>Pokemon news</h3>
 
         <AddPost dataFunction={getData} id={user._id}/>
 
