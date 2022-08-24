@@ -4,6 +4,8 @@ import DeletePokemon from "../../components/DeletePokemon"
 import {AuthContext} from "../../context/auth.context"
 import { getAPokemon } from "../../services/pokemon.services"
 import { getAPost } from "../../services/post.services"
+import {Button} from "react-bootstrap"
+import UpdatePostForm from "../pokemons/UpdatePostForm"
 
 const Profile = ()=> {
 
@@ -62,26 +64,35 @@ const Profile = ()=> {
   if(isUserActive === true){
     return (
       <main className="body dark p-6">
-          <h3>Bienvenido a tu perfil {user.username}</h3>
+          <h3 style={{color: "whitesmoke"}}>Welcome {user.username}</h3>
 
-          <h4>Tus posts</h4>
+          <h4 style={{color: "whitesmoke"}}>Tus posts</h4>
+          <section style={{display: "flex", gap: "1rem", justifyContent: "center", paddingBottom: "2rem"}}>
           {
           posts && posts.map(e=>{
-              return <h3 key={e._id}>{e.title}</h3>
+              return <div key={e.title}>
+                  <img src={e.picture} alt="foto" width={160} height={190} />
+                  <h3 style={{color: "whitesmoke"}}>{e.title}</h3>
+                  <Link to={`/pokemon/${e._id}/news`}> <Button variant='outline-secondary'>Update your post</Button></Link>
+              </div>
             })
           }
+          </section>
+          
 
-          <h4>Tus pokemons</h4>
+          <h4 style={{color: "whitesmoke"}}>Tus pokemons</h4>
+          <section style={{display: "flex", gap: "1.5rem", justifyContent: "center", alignItems: "center"}}>
           {
           pokemons && pokemons.map(e=>{
-              return <article key={e.id}>
+              return <article style={{display: "flex", alignItems: "center", flexDirection: "column", gap: "0.5rem", justifyContent: "center", paddingBottom: "2rem"}} key={e.id}>
                 <img src={e.sprites.front_default} alt="foto" />
-                <h4>{e.name}</h4>
-                <Link to={`/pokemon/${e.name}/details`}><button>Details</button></Link>
+                <h4 style={{color: "whitesmoke"}}>{e.name}</h4>
+                <Link to={`/pokemon/${e.name}/details`}><Button variant="outline-primary">Details</Button></Link>
                 <DeletePokemon name={e.name} dataFunction={getMyPokemons}/>
               </article>
             })
           }
+          </section>
           
       </main>
     )

@@ -1,6 +1,7 @@
 import { deletePokemon } from "../services/user.service"
 import { useContext } from "react"
 import {AuthContext} from "../context/auth.context"
+import {Button} from "react-bootstrap"
 
 function DeletePokemon({name, dataFunction}) {
 
@@ -23,7 +24,7 @@ function DeletePokemon({name, dataFunction}) {
     }
 
   return (
-    <button onClick={deleteThePokemon}>Eliminar pokemon</button>
+    <Button variant="outline-danger" onClick={deleteThePokemon}>Delete</Button>
   )
 }
 

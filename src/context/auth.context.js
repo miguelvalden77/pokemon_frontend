@@ -10,6 +10,7 @@ function AuthWrapper (props){
     const [user, setUser] = useState(null)
     const [isFetching, setIsFetching] = useState(false)
     const [pokemones, setPokemons] = useState([])
+    const [posts, setPosts] = useState([])
 
     useEffect(()=>{
         authenticateUser()
