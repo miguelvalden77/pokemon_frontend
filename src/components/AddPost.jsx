@@ -48,7 +48,7 @@ function AddPost({id, dataFunction}) {
     }
 
   return (
-    <article className='main-form post'>
+    <article className='main-form post' style={{borderBottom: "1px dashed gray", paddingBottom: "2rem"}}>
       <form style={{alignItems: "flex-start"}} className="register-form">
 
           <div className='input-container'>
@@ -57,9 +57,9 @@ function AddPost({id, dataFunction}) {
           </div>
 
           <div className='input-container'>
-            <p className='label post-label'>Picture</p>
-            <input className='input' onChange={handleImgUpload} type="file" />
-            <img src={urlImage} alt="foto" width={100} height={100}/>
+            <p className='label post-picture'>Picture</p>
+            <input className='input picture-input' onChange={handleImgUpload} type="file" />
+            <img style={{margin: "auto", paddingTop: "0.5rem"}} src={urlImage} alt="foto" width={150} height={190}/>
           </div>
 
           <div className='input-container'>
@@ -71,12 +71,6 @@ function AddPost({id, dataFunction}) {
           <Button onClick={handleSubmit} className='form-button' variant='outline-light'>Upload a new post!</Button>
 
       </form>
-
-      {/* <div className='input-container'>
-            <p className='label post-label'>Picture</p>
-            <input className='input' onChange={handleImgUpload} type="file" name='picture'/>
-            <img src={urlImage} width={300} height={200} alt="foto" />
-          </div> */}
     </article>
   )
 }

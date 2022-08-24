@@ -211,6 +211,15 @@ img{
   color: black;
 }
 
+.post-picture{
+  position: absolute;
+  top: -6.6%;
+}
+
+.picture-input{
+  padding: 0.6rem;
+}
+
 .pokedex-section{
   display: flex;
   flex-wrap: wrap;

@@ -72,7 +72,8 @@ function PokemonNews() {
         <div style={{display: "flex", flexWrap: "wrap", gap: "2rem", justifyContent: "space-evenly", alignItems: "center"}}>
         {
             news.map(e=>{
-                return <article style={{border: "2px solid whitesmoke",
+                return <article style={{borderBottom: "1px dashed gray",
+                paddingBottom: "2rem",
                 justifyContent: 'space-around', 
                 alignItems: "center", 
                 display: "flex", 
@@ -82,7 +83,7 @@ function PokemonNews() {
 
                     <img src={e.picture} alt="foto" width={410} height={350} />
                     <h3 style={{color: "whitesmoke"}}>{e.title}</h3>
-                    <p style={{maxWidth: "400px"}}>{e.description}</p>
+                    <p style={{maxWidth: "400px", color: "whitesmoke"}}>{e.description}</p>
                     <section style={{display: "flex", gap: "1.5rem"}}>
                     {   
                         user._id === e.owner && <Button variant='outline-danger' onClick={async ()=> deleteThePost(e)}>Delete your post</Button>
@@ -95,8 +96,8 @@ function PokemonNews() {
                         {
                             e.comments.map((ej, i)=>{
                                 return <div key={ej + i}>
-                                    <p>{ej.message}</p>
-                                    {ej.owner === user._id && <button onClick={()=>deleteTheComment(ej, e._id)}>Delete comment</button>}
+                                    <p style={{color: "whitesmoke"}}>{ej.message}</p>
+                                    {ej.owner === user._id && <Button variant='outline-warning' onClick={()=>deleteTheComment(ej, e._id)}>Delete comment</Button>}
                                 </div>
                             })
                         }
