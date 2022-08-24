@@ -36,7 +36,7 @@ function Navbar() {
     )
   } else{
     return (
-      <nav className="no-logged-nav">
+      <nav className="no-logged-nav-non">
         <NavLink to={"/"}><Button variant="outline-secondary">Home</Button></NavLink>
           <NavLink  to={"/pokemon/all"}><Button variant="outline-danger">Pokedex</Button></NavLink>
           <NavLink  to={"/register"}><Button variant="outline-success">Register</Button></NavLink>

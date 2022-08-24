@@ -239,7 +239,6 @@ const colorType = (type)=>{
   }
 }
 
-
   if(isFecthing){
     return <h3 className='body dark p-6'>Cargando . . .</h3>
   }
@@ -261,6 +260,7 @@ const colorType = (type)=>{
       <section className='pokedex-section'>
       {
         visiblePokemons && visiblePokemons.map(e=>{
+          console.log(e)
           return  <article className='pokedex-card' key={e.id}>
                       <div>
                         <img src={e.sprites.front_default} alt="foto" />

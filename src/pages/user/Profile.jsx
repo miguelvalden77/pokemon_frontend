@@ -16,8 +16,8 @@ const Profile = ()=> {
   const [isFetching, setIsFetching] = useState(true)
 
   useEffect(()=>{
-    getPosts(user.posts)
     getMyPokemons(user.pokemons)
+    getPosts(user.posts)
   }, [])
 
   const getPosts = async (arr)=>{
@@ -28,11 +28,11 @@ const Profile = ()=> {
           const post = await getAPost(e)
           newArr.push(post.data)
           setPosts(newArr)
-      })
+        })
+        console.log(newArr)
       setIsFetching(false)
-      return
       }
-      setIsFetching(false)
+      //setIsFetching(false)
     }
     catch(error){
       console.log(error)

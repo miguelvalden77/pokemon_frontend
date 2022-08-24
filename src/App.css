@@ -121,6 +121,16 @@ img{
   left: 20%;
 }
 
+.no-logged-nav-non{
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  gap: 1.5rem;
+  position: absolute;
+  z-index: 10;
+  left: 35%;
+}
+
 .button-container{
   display: flex;
   align-items: center;

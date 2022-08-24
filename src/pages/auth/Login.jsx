@@ -48,10 +48,9 @@ function Login() {
 
       {/* <h3>Login</h3> */}
 
-      {errorMessage && <p>{errorMessage}</p>}
-
       <form onSubmit={handleSubmit} className="register-form">
         <h3 className='register-title'>Login</h3>
+      {errorMessage && <p style={{color: "red", textAlign: "center", maxWidth: "240px"}}>{errorMessage}</p>}
         <div className='input-container'>
           <p className="label">Username</p>
           <input className='input' onChange={handleChange} type="text" name='username' value={username} />

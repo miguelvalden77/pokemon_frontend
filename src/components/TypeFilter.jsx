@@ -17,7 +17,6 @@ function TypeFilter({pokeArr, setVisible}) {
                 }
             }
         }
-        console.log(newPokeArr)
         setVisible(newPokeArr)
         //getData()
     }
@@ -97,7 +96,6 @@ function TypeFilter({pokeArr, setVisible}) {
         maxWidth: "400px"}}>
         {
             types.map(e=>{
-                console.log(colorType(e))
                 return <Button className="button-filter" variant="outline-light" key={e} onClick={()=> filter(pokeArr, e)} >{e}</Button>
             })
         }
