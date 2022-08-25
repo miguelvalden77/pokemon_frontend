@@ -87,7 +87,8 @@ function PokemonNews() {
                 width: "100%"}} key={e._id}>
 
                     <img src={e.picture} alt="foto" width={410} height={350} />
-                    <h3 style={{color: "whitesmoke"}}>{e.title}</h3>
+
+                    <h3 style={{color: "whitesmoke"}}>Title: {e.title}</h3>
                     <p style={{maxWidth: "400px", color: "whitesmoke"}}>{e.description}</p>
                     <section style={{display: "flex", gap: "1.5rem"}}>
                     {   

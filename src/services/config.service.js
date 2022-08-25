@@ -1,5 +1,5 @@
 import axios from "axios"
-const service = axios.create({baseURL:"http://localhost:5005/api"})
+const service = axios.create({baseURL:`${process.env.REACT_APP_SERVER_URL}`})
 
 service.interceptors.request.use((config)=>{
 

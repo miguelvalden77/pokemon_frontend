@@ -31,8 +31,9 @@ const Profile = ()=> {
         })
         console.log(newArr)
       setIsFetching(false)
+      return
       }
-      //setIsFetching(false)
+      setIsFetching(false)
     }
     catch(error){
       console.log(error)
@@ -47,9 +48,11 @@ const Profile = ()=> {
           const poke = await getAPokemon(e)
           newArr.push(poke.data)
           setPokemons(newArr)
+          setIsFetching(false)
           return
         })  
       }
+      setIsFetching(false)
       
     }
     catch(error){
@@ -71,6 +74,13 @@ const Profile = ()=> {
           {
           posts ? posts.map(e=>{
               return <div key={e.title}>
+                  <span style={{color: "black", 
+                  display: "block", 
+                  borderRadius: "50%", 
+                  backgroundColor: "whitesmoke", 
+                  width: "30px", height: "30px", 
+                  position: "relative", 
+                  top: "15px"}}>{e.comments.length}</span>
                   <img src={e.picture} alt="foto" width={160} height={190} />
                   <h3 style={{color: "whitesmoke"}}>{e.title}</h3>
                   <Link to={`/pokemon/${e._id}/news`}> <Button variant='outline-secondary'>Update your post</Button></Link>
