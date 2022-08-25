@@ -9,6 +9,7 @@ import {BrowserRouter} from "react-router-dom"
 
 // Context
 import {AuthWrapper} from "./context/auth.context"
+import Favicon from 'react-favicon';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -18,6 +19,7 @@ root.render(
     <BrowserRouter>
       <AuthWrapper>
         <App />
+        <Favicon url={"./public/favicon.ico"}/>
       </AuthWrapper>
     </BrowserRouter>
   </React.StrictMode>

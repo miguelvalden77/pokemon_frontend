@@ -61,7 +61,9 @@ const PokemonDetails = ()=> {
       <article className='detail-card'>
         <h3>{pokemon.name}</h3>       
         <img src={pokemon.sprites.front_default} alt="foto" />
-        {click && <p style={{color: "green", margin: "0.5rem 0"}}>You captured {pokemon.name}</p>}
+        {
+        click && <p style={{color: "green", margin: "0.5rem 0"}}>{user.pokemons.includes(pokemon.name) ? "Ya lo tienes agregado" : `You captured ${pokemon.name}`}</p>
+        }
         <Button onClick={()=>{handleClick(); addToFav()}} variant='outline-success' style={{marginBottom: "1rem"}}>Añadir a favoritos</Button>
           <p style={{textAlign: "left"}}>Weight: {pokemon.weight}</p>
           <p style={{textAlign: "left"}}>Height: {pokemon.height}</p>
