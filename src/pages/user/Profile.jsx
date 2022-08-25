@@ -96,14 +96,14 @@ const Profile = ()=> {
           <h4 style={{color: "whitesmoke"}}>Tus pokemons</h4>
           <section style={{display: "flex", gap: "1.5rem", justifyContent: "center", alignItems: "center"}}>
           {
-          pokemons ? pokemons.map(e=>{
+          pokemons.length > 0 ? pokemons.map(e=>{
               return <article style={{display: "flex", alignItems: "center", flexDirection: "column", gap: "0.5rem", justifyContent: "center", paddingBottom: "2rem"}} key={e.id}>
                 <img src={e.sprites.front_default} alt="foto" />
                 <h4 style={{color: "whitesmoke"}}>{e.name}</h4>
                 <Link to={`/pokemon/${e.name}/details`}><Button variant="outline-primary">Details</Button></Link>
                 <DeletePokemon name={e.name} dataFunction={getMyPokemons}/>
               </article>
-            }) :  <div>
+            }) : <div>
             <p style={{color: "whitesmoke"}}>Add your first pokemon</p> 
             <Link to={'/pokemon/all'}><Button variant="outline-primary">Pokedex</Button></Link>
           </div>
