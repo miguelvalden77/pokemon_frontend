@@ -96,7 +96,7 @@ const Profile = ()=> {
           <h4 style={{color: "whitesmoke"}}>Tus pokemons</h4>
           <section style={{display: "flex", gap: "1.5rem", justifyContent: "center", alignItems: "center"}}>
           {
-          user.pokemons.length > 0 ? pokemons.map(e=>{
+          user.pokemons ? pokemons.map(e=>{
               return <article style={{display: "flex", alignItems: "center", flexDirection: "column", gap: "0.5rem", justifyContent: "center", paddingBottom: "2rem"}} key={e.id}>
                 <img src={e.sprites.front_default} alt="foto" />
                 <h4 style={{color: "whitesmoke"}}>{e.name}</h4>
