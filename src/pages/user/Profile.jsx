@@ -12,7 +12,7 @@ const Profile = ()=> {
   const {user, isUserActive} = useContext(AuthContext)
   const navigate = useNavigate()
   const [posts, setPosts] = useState(null)
-  const [pokemons, setPokemons] = useState([])
+  const [pokemons, setPokemons] = useState(null)
   const [isFetching, setIsFetching] = useState(true)
 
   useEffect(()=>{
