@@ -29,7 +29,6 @@ const Profile = ()=> {
           newArr.push(post.data)
           setPosts(newArr)
         })
-        console.log(newArr)
       setIsFetching(false)
       return
       }
@@ -48,9 +47,9 @@ const Profile = ()=> {
           const poke = await getAPokemon(e)
           newArr.push(poke.data)
           setPokemons(newArr)
-          setIsFetching(false)
-          return
         })  
+        setIsFetching(false)
+        return
       }
       setIsFetching(false)
       
@@ -96,7 +95,7 @@ const Profile = ()=> {
           <h4 style={{color: "whitesmoke"}}>Tus pokemons</h4>
           <section style={{display: "flex", gap: "1.5rem", justifyContent: "center", alignItems: "center"}}>
           {
-          user.pokemons ? pokemons.map(e=>{
+          pokemons ? pokemons.map(e=>{ console.log("hola")
               return <article style={{display: "flex", alignItems: "center", flexDirection: "column", gap: "0.5rem", justifyContent: "center", paddingBottom: "2rem"}} key={e.id}>
                 <img src={e.sprites.front_default} alt="foto" />
                 <h4 style={{color: "whitesmoke"}}>{e.name}</h4>
