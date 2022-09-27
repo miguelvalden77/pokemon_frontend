@@ -43,7 +43,7 @@ const PokemonDetails = ()=> {
       }
     }
     catch(error){
-      console.log(error)
+      navigate("/error")
     }
   } 
 
@@ -73,12 +73,6 @@ const PokemonDetails = ()=> {
                 <p>{obj.stat.name}: {obj.base_stat}</p>
               </section>
                 
-              
-              // obj.map(e=>{
-              //   return <section>
-              //     <p>{e.name}: {obj.base_stat}</p>
-              //   </section>
-              // })
             })
           }
       </article>
