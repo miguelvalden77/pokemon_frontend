@@ -25,8 +25,6 @@ function RandomPokemon() {
             const randomNum = Math.floor(Math.random()*560)
             const pokemon = await getPokemonById(randomNum)
             setRandomPokemon(pokemon.data)
-            console.log(randomPokemon)
-            //pokeArr.data.results.length
     
         }
         catch(error){
