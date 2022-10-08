@@ -1,7 +1,6 @@
 import { useEffect, useState, useContext } from 'react'
 import { getAllPokemons, getAPokemon } from '../../services/pokemon.services'
 import {Link} from "react-router-dom"
-import axios from 'axios'
 import Search from '../../components/Search'
 import TypeFilter from '../../components/TypeFilter'
 import {AuthContext} from "../../context/auth.context"
@@ -117,11 +116,10 @@ const colorType = (type)=>{
     case "dark":
       return {backgroundColor: "#454854"}
     
-    // case "ghost":
-    //   return {backgroundColor: "red"}
+    case "ghost":
+      return {backgroundColor: "grey"}
 
     default: return null
-      break;
   }
 }
 

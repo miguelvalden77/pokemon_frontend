@@ -13,13 +13,13 @@ function AuthWrapper (props){
     const [posts, setPosts] = useState([])
 
     useEffect(()=>{
-        authenticateUser()
         getData()
+        authenticateUser()
     }, [])
 
 
     const getData = async ()=>{
-        const num = 491
+        const num = 400
         try{
           const PokeArr = []
           for(let i = 1; i < num; i++){
