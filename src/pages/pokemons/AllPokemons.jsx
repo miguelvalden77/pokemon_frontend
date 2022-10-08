@@ -239,6 +239,8 @@ const colorType = (type)=>{
   }
 }
 
+
+
   if(isFecthing){
     return <h3 className='body dark p-6'>Cargando . . .</h3>
   }
