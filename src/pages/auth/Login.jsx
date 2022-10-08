@@ -22,7 +22,6 @@ function Login() {
 
     try{
       const response = await loginUser(credentials)
-      console.log(response.data)
 
       const authToken = response.data.authToken
 
@@ -45,8 +44,6 @@ function Login() {
 
   return (
     <div className='main-form dark body'>
-
-      {/* <h3>Login</h3> */}
 
       <form onSubmit={handleSubmit} className="register-form">
         <h3 className='register-title'>Login</h3>

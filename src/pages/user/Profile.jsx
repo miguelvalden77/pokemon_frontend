@@ -35,7 +35,7 @@ const Profile = ()=> {
       setIsFetching(false)
     }
     catch(error){
-      console.log(error)
+      navigate("/error")
     }
   }
 
@@ -55,7 +55,7 @@ const Profile = ()=> {
       
     }
     catch(error){
-      console.log(error)
+      navigate("/error")
     }
   }
 

@@ -29,7 +29,7 @@ function UpdatePostForm() {
       setData({title: post.data.title, description: post.data.description, picture: post.data.picture})
     }
     catch(error){
-      console.log(error)
+     navigate("/error")
     }
 
   }
@@ -44,32 +44,28 @@ function UpdatePostForm() {
     try{
 
       const post = await getAPost(id)
-      console.log(post.data.owner)
+    
       if(user._id === post.data.owner._id){
         await updatePost(id, info)
         navigate("/pokemon/news")
       }
     }
     catch(error){
-      console.log(error)
+      navigate("/error")
     }
   }
 
   const handleImgUpload = async e=>{
-
-    console.log(e.target.files[0])
 
     const form = new FormData()
     form.append("image", e.target.files[0])
 
     try{
       const response = await upload(form)
-      console.log(response)
       setUrlImage(response.data.imageUrl)
     }
     catch(error){
-      console.log(error)
-      //Poner despues los navigate
+      navigate("/error")
     }
   }
 
