@@ -18,7 +18,6 @@ function TypeFilter({pokeArr, setVisible}) {
             }
         }
         setVisible(newPokeArr)
-        //getData()
     }
 
     const colorType = (type)=>{

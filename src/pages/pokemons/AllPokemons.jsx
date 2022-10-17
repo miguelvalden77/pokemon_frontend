@@ -1,7 +1,5 @@
 import { useEffect, useState, useContext } from 'react'
-import { getAllPokemons, getAPokemon } from '../../services/pokemon.services'
 import {Link} from "react-router-dom"
-import Search from '../../components/Search'
 import TypeFilter from '../../components/TypeFilter'
 import {AuthContext} from "../../context/auth.context"
 import {Button} from "react-bootstrap"
@@ -25,13 +23,8 @@ function AllPokemons(){
   }
 
   const getData = async ()=>{
-    //const num = 387
+  
     try{
-      // const PokeArr = []
-      // for(let i = 1; i < num; i++){
-      //   const pokemon = await axios.get(`https://pokeapi.co/api/v2/pokemon/${i}/`)
-      //   PokeArr.push(pokemon.data)
-      // }
     
       setPokemons(pokemones)
       setVisiblePokemons(pokemones)

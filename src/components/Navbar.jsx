@@ -1,11 +1,6 @@
 import { useContext } from "react"
 import {NavLink, useNavigate} from "react-router-dom"
 import {AuthContext} from "../context/auth.context"
-import houseLogo from "../img/casa-logo.png"
-import pokedex from "../img/pokedex.png"
-import news from "../img/news-logo.png"
-import game from "../img/game.png"
-import random from "../img/random.jpg"
 
 // Bootstrap
 import { Button } from "react-bootstrap"
