@@ -19,7 +19,7 @@ function AuthWrapper (props){
 
 
     const getData = async ()=>{
-        const num = 100
+        const num = 150
         try{
           const PokeArr = []
           for(let i = 1; i < num; i++){
