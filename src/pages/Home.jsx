@@ -1,12 +1,20 @@
 import bg1 from "../img/background-home-1.jpg" 
 import bg2 from "../img/initials.jpg" 
 import bg3 from "../img/pokeballs.jpg" 
+import wp1 from "../img/wallpaper-1.jpg"
+import wp2 from "../img/pokeball.jpg"
+import wp3 from "../img/wallpaper-3.jpg"
 import {Carousel} from "react-bootstrap"
 import {useState, useEffect} from "react"
+import { useMediaQuery } from 'react-responsive'
 
 function Home() {
 
   const [isFecthing, setIsFetching] = useState(true)
+
+  // Mediaquery
+  const isBigScreen = useMediaQuery({query: "(min-width: 960px)"})
+  // const isMediumScreen = useMediaQuery({query: "(min-width: px)"})
 
   useEffect(()=>{
     setIsFetching(false)
@@ -20,12 +28,23 @@ function Home() {
 
     <Carousel>
       <Carousel.Item>
-        <img
-        style={{backgroundSize: "cover", overflow: "hidden", maxHeight: "100vh"}}
-          className="d-block w-100"
-          src={bg1}
-          alt="First slide"
-        />
+          {
+            isBigScreen 
+            ?
+            <img
+              style={{backgroundSize: "cover", overflow: "hidden", maxHeight: "100vh"}}
+              className="d-block w-100"
+              src={bg1}
+              alt="First slide"
+              /> 
+              :
+              <img
+              style={{backgroundSize: "cover", overflow: "hidden", maxHeight: "100vh"}}
+              className="d-block w-100"
+              src={wp2}
+              alt="First slide"
+              />
+          }
       </Carousel.Item>
       <Carousel.Item>
         <img

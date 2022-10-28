@@ -4,6 +4,7 @@ import {AuthContext} from "../context/auth.context"
 
 // Bootstrap
 import { Button } from "react-bootstrap"
+import Nav from 'react-bootstrap/Nav';
 
 function Navbar() {
 
@@ -18,23 +19,76 @@ function Navbar() {
 
   if(isUserActive === true){
     return(
-      <nav className="no-logged-nav">
-        <NavLink to={"/"}> <Button variant="outline-light">Home</Button></NavLink>
-        <NavLink to={"/profile"}><Button variant="outline-primary">Profile</Button></NavLink>
-        <NavLink to={"/pokemon/all"}><Button variant="outline-danger">Pokedex</Button></NavLink>
-        <NavLink to={"/pokemon/random"}><Button variant="outline-warning">Random</Button></NavLink>
-        <NavLink to={"/pokemon/games"}><Button variant="outline-success">Games</Button></NavLink>
-        <NavLink to={"/pokemon/news"}><Button variant="outline-info">News</Button></NavLink>
+      // <nav className="no-logged-nav">
+      //   <NavLink to={"/"}> <Button variant="outline-light">Home</Button></NavLink>
+      //   <NavLink to={"/profile"}><Button variant="outline-primary">Profile</Button></NavLink>
+      //   <NavLink to={"/pokemon/all"}><Button variant="outline-danger">Pokedex</Button></NavLink>
+      //   <NavLink to={"/pokemon/random"}><Button variant="outline-warning">Random</Button></NavLink>
+      //   <NavLink to={"/pokemon/games"}><Button variant="outline-success">Games</Button></NavLink>
+      //   <NavLink to={"/pokemon/news"}><Button variant="outline-info">News</Button></NavLink>
+      //   <Button variant="outline-secondary" onClick={handleLogout}>Logout</Button>
+      // </nav>
+      <Nav className="navbar" variant="tabs" defaultActiveKey="/home">
+      <Nav.Item>
+        <Nav.Link>
+          <NavLink to={"/"}> Home </NavLink>
+        </Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link>
+          <NavLink to={"/profile"}> Profile </NavLink>
+        </Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link>
+          <NavLink to={"/pokemon/all"}> Pokedex </NavLink>
+        </Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link>
+          <NavLink to={"/pokemon/news"}> News </NavLink>
+        </Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link>
+          <NavLink to={"/pokemon/games"}> Games </NavLink>
+        </Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link>
+          <NavLink to={"/pokemon/random"}> Random </NavLink>
+        </Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
         <Button variant="outline-secondary" onClick={handleLogout}>Logout</Button>
-      </nav>
+      </Nav.Item>
+    </Nav>
     )
   } else{
     return (
-      <nav className="no-logged-nav-non">
-        <NavLink to={"/"}><Button variant="outline-secondary">Home</Button></NavLink>
-          <NavLink  to={"/register"}><Button variant="outline-success">Register</Button></NavLink>
-          <NavLink  to={"/login"}><Button variant="outline-primary">Login</Button></NavLink>
-      </nav>
+      // <nav className="no-logged-nav-non">
+      //   <NavLink to={"/"}><Button variant="outline-secondary">Home</Button></NavLink>
+      //     <NavLink  to={"/register"}><Button variant="outline-success">Register</Button></NavLink>
+      //     <NavLink  to={"/login"}><Button variant="outline-primary">Login</Button></NavLink>
+      // </nav>
+
+      <Nav className="navbar" variant="tabs" defaultActiveKey="/home">
+      <Nav.Item>
+        <Nav.Link>
+          <NavLink to={"/"}> Home </NavLink>
+        </Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link>
+          <NavLink to={"/login"}> Login </NavLink>
+        </Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link>
+          <NavLink to={"/register"}> Register </NavLink>
+        </Nav.Link>
+      </Nav.Item>
+    </Nav>
     )
   }
 }
