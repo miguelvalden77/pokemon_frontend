@@ -1,9 +1,9 @@
 import bg1 from "../img/background-home-1.jpg" 
 import bg2 from "../img/initials.jpg" 
 import bg3 from "../img/pokeballs.jpg" 
-import wp1 from "../img/wallpaper-1.jpg"
-import wp2 from "../img/pokeball.jpg"
-import wp3 from "../img/wallpaper-3.jpg"
+import pk1 from "../img/rojo-fuego.jpg"
+import pk2 from "../img/carta.jpg"
+import pk3 from "../img/jiggly.jpg"
 import {Carousel} from "react-bootstrap"
 import {useState, useEffect} from "react"
 import { useMediaQuery } from 'react-responsive'
@@ -13,7 +13,7 @@ function Home() {
   const [isFecthing, setIsFetching] = useState(true)
 
   // Mediaquery
-  const isBigScreen = useMediaQuery({query: "(min-width: 960px)"})
+  const isBigScreen = useMediaQuery({query: "(min-width: 600px)"})
   // const isMediumScreen = useMediaQuery({query: "(min-width: px)"})
 
   useEffect(()=>{
@@ -26,41 +26,57 @@ function Home() {
 
   return (
 
-    <Carousel>
-      <Carousel.Item>
+    <Carousel className="carousel">
+      <Carousel.Item className="item">
           {
             isBigScreen 
             ?
             <img
-              style={{backgroundSize: "cover", overflow: "hidden", maxHeight: "100vh"}}
-              className="d-block w-100"
+              className="d-block w-100 giant"
               src={bg1}
               alt="First slide"
               /> 
               :
-              <img
-              style={{backgroundSize: "cover", overflow: "hidden", maxHeight: "100vh"}}
-              className="d-block w-100"
-              src={wp2}
+              <img 
+              className="d-block w-100 small"
+              src={pk1}
               alt="First slide"
               />
           }
       </Carousel.Item>
       <Carousel.Item>
-        <img
-          style={{backgroundSize: "cover", overflow: "hidden", maxHeight: "100vh"}}
-          className="d-block w-100"
-          src={bg2}
-          alt="Second slide"
-        />
+          {
+            isBigScreen 
+            ?
+            <img
+              className="d-block w-100 giant"
+              src={bg2}
+              alt="Second slide"
+              /> 
+              :
+              <img
+              className="d-block w-100 small"
+              src={pk2}
+              alt="Second slide"
+              />
+          }
       </Carousel.Item>
       <Carousel.Item>
-        <img
-          style={{backgroundSize: "cover", overflow: "hidden", maxHeight: "100vh"}}
-          className="d-block w-100"
-          src={bg3}
-          alt="Third slide"
-        />
+          {
+            isBigScreen 
+            ?
+            <img
+              className="d-block w-100 giant"
+              src={bg3}
+              alt="Second slide"
+              /> 
+              :
+              <img
+              className="d-block w-100 small"
+              src={pk3}
+              alt="Second slide"
+              />
+          }
       </Carousel.Item>
     </Carousel>
 
