@@ -85,7 +85,7 @@ function TypeFilter({pokeArr, setVisible}) {
 
 
   return (
-    <section style={{ 
+    <section className="filters" style={{ 
         overflowX: "hidden", 
         borderRadius: "10px", 
         padding: "0.5rem", 
@@ -95,7 +95,7 @@ function TypeFilter({pokeArr, setVisible}) {
         maxWidth: "400px"}}>
         {
             types.map(e=>{
-                return <Button className="button-filter" variant="outline-light" key={e} onClick={()=> filter(pokeArr, e)} >{e}</Button>
+                return <Button style={colorType(e)} className="button-filter" variant="outline-light" key={e} onClick={()=> filter(pokeArr, e)} >{e}</Button>
             })
         }
     </section>

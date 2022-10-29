@@ -128,7 +128,7 @@ const colorType = (type)=>{
 
         <Button onClick={allPokemonsAgain} style={{marginBottom: "2rem"}} variant='outline-light'>All pokemons</Button>
 
-        <div style={{display: "flex", alignItems: "center", justifyContent: "space-evenly"}}>
+        <div style={{display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-evenly"}}>
             <TypeFilter pokeArr={pokemons} setVisible={setVisiblePokemons}/>
             <div display={{position: "relative"}}>
               <label style={{color: "whitesmoke", padding: "2rem"}} htmlFor="search">Search</label>
