@@ -30,34 +30,34 @@ function Navbar() {
       // </nav>
       <Nav className="navbar" variant="tabs" defaultActiveKey="/home">
       <Nav.Item>
-        <Nav.Link>
+      
           <NavLink to={"/"}> Home </NavLink>
-        </Nav.Link>
+        
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link>
+      
           <NavLink to={"/profile"}> Profile </NavLink>
-        </Nav.Link>
+    
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link>
+      
           <NavLink to={"/pokemon/all"}> Pokedex </NavLink>
-        </Nav.Link>
+        
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link>
+      
           <NavLink to={"/pokemon/news"}> News </NavLink>
-        </Nav.Link>
+        
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link>
+      
           <NavLink to={"/pokemon/games"}> Games </NavLink>
-        </Nav.Link>
+        
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link>
+      
           <NavLink to={"/pokemon/random"}> Random </NavLink>
-        </Nav.Link>
+        
       </Nav.Item>
       <Nav.Item>
         <Button variant="outline-secondary" onClick={handleLogout}>Logout</Button>
@@ -74,19 +74,19 @@ function Navbar() {
 
       <Nav className="navbar" variant="tabs" defaultActiveKey="/home">
       <Nav.Item>
-        <Nav.Link>
-          <NavLink to={"/"}> Home </NavLink>
-        </Nav.Link>
+      
+        <NavLink to={"/"}> Home </NavLink>
+        
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link>
-          <NavLink to={"/login"}> Login </NavLink>
-        </Nav.Link>
+      
+        <NavLink to={"/login"}> Login </NavLink>
+        
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link>
-          <NavLink to={"/register"}> Register </NavLink>
-        </Nav.Link>
+      
+        <NavLink to={"/register"}> Register </NavLink>
+        
       </Nav.Item>
     </Nav>
     )

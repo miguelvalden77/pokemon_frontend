@@ -163,7 +163,7 @@ img{
 .navbar{
   display: flex;
   justify-content: center;
-  gap: 0.75rem;
+  gap: 2rem;
   background-color: black;
   z-index: 10;
 }
@@ -171,6 +171,12 @@ img{
 .navbar a{
   color: whitesmoke;
   text-decoration: none;
+}
+
+@media screen and (max-width: 600px) {
+  .navbar{
+    gap: 0.75rem;
+  }
 }
 
 .carousel{
@@ -314,9 +320,23 @@ img{
 .detail-card{
   display: flex;
   flex-direction: column;
-  max-width: 170px;
+  background-color: rgb(40, 39, 39);
+  max-width: 400px;
   margin: auto;
   color: whitesmoke;
+  border-radius: 6px;
+  backdrop-filter: blur(20px);
+}
+
+.stats_section{
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+}
+
+.stats-description{
+  text-align: left;
+  margin-left: 2rem;
 }
 
 .post{
@@ -330,4 +350,36 @@ img{
 
 .textarea{
   top: -5%;
+}
+
+.profile-layout{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-top: 1rem;
+}
+
+.sprites_section{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.main_photo{
+  transform: scale(1.5);
+}
+
+.capture_button{
+  width: 200px;
+  margin: auto;
+}
+
+.pokeball_random{
+  margin: 1rem auto;
+  animation: load infinite linear 5s;
+}
+
+@keyframes load {
+  100%{
+    transform: rotate(360deg);
+  }
 }

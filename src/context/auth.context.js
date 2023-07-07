@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { verifyService } from "../services/auth.services";
 import axios from "axios"
 
@@ -10,7 +10,6 @@ function AuthWrapper (props){
     const [user, setUser] = useState(null)
     const [isFetching, setIsFetching] = useState(false)
     const [pokemones, setPokemons] = useState([])
-    const [posts, setPosts] = useState([])
 
     useEffect(()=>{
         getData()
@@ -19,7 +18,7 @@ function AuthWrapper (props){
 
 
     const getData = async ()=>{
-        const num = 150
+        const num = 151
         try{
           const PokeArr = []
           for(let i = 1; i < num; i++){

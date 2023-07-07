@@ -5,6 +5,7 @@ import {addPokemon} from "../../services/user.service"
 import { useContext } from "react"
 import {AuthContext} from "../../context/auth.context"
 import {Button} from "react-bootstrap"
+import PhotoSection from "../../components/pokemons/PhotoSection"
 
 const PokemonDetails = ()=> {
 
@@ -53,28 +54,25 @@ const PokemonDetails = ()=> {
     return <h3 className='body dark p-6'>Cargando . . .</h3>
   }
 
-  //console.log(pokemon.stats)
-
   return (
     <div className='body dark p-6'>
 
       <article className='detail-card'>
         <h3>{pokemon.name}</h3>       
-        <img src={pokemon.sprites.front_default} alt="foto" />
+        <PhotoSection photo_1={pokemon.sprites.back_default} photo_2={pokemon.sprites.front_default} photo_3={pokemon.sprites.front_shiny}/> 
         {
         click && <p style={{color: "green", margin: "0.5rem 0"}}>{user.pokemons.includes(pokemon.name) ? "Ya lo tienes agregado" : `You captured ${pokemon.name}`}</p>
         }
-        <Button onClick={()=>{handleClick(); addToFav()}} variant='outline-success' style={{marginBottom: "1rem"}}>Añadir a favoritos</Button>
-          <p style={{textAlign: "left"}}>Weight: {pokemon.weight}</p>
-          <p style={{textAlign: "left"}}>Height: {pokemon.height}</p>
-          {
-            pokemon.stats.map(obj=>{
-              return <section style={{display: "flex", flexDirection: "column", alignItems: "flex-start"}} key={obj.stat.name}>
-                <p>{obj.stat.name}: {obj.base_stat}</p>
-              </section>
-                
-            })
-          }
+        <Button className='capture_button' onClick={()=>{handleClick(); addToFav()}} variant='outline-success' style={{marginBottom: "1rem"}}>Añadir a favoritos</Button>
+          <section className='stats_section'>
+            <p className='stats-description'>Weight: {pokemon.weight}</p>
+            <p className='stats-description'>Height: {pokemon.height}</p>
+            {
+              pokemon.stats.map(obj=>{
+                return <p className='stats-description' key={obj.stat.name}>{obj.stat.name}: {obj.base_stat}</p>
+                })
+              }
+            </section>
       </article>
 
     </div>
