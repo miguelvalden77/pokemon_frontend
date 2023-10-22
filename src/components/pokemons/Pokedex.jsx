@@ -1,25 +1,16 @@
 import { Link } from "react-router-dom"
-import { Button } from "react-bootstrap"
-import { colorType } from "../../utils/colors"
 
 
-const Pokedex = ({pokemon}) =>{
+const Pokedex = ({ id }) => {
 
-    return(
-        <article className='pokedex-card' key={pokemon.id}>
-            <div>
-                <img src={pokemon.sprites.front_default} alt="foto" />
-                <h5 style={{color: "black"}}>{pokemon.name}</h5>
-            </div>
-            <div style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
-            {
-                pokemon.types.map(obj=>{
-                    return <h4 className='pokemonType' style={colorType(obj.type.name)} key={obj.type.name + pokemon.id}>{obj.type.name}</h4>
-                })
-            }
-            </div>
-            <Link to={`/pokemon/${pokemon.name}/details`}><Button variant="outline-dark">Details</Button></Link>
-        </article>
+    return (
+        <Link style={{ textDecoration: "none" }} key={id} to={`/pokemon/${id}/details`}>
+            <article className='pokedex-card'>
+                <div>
+                    <img width={"100%"} style={{ maxHeight: "270px" }} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${id}.svg`} alt="foto" />
+                </div>
+            </article>
+        </Link>
     )
 
 }

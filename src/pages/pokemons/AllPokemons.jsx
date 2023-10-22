@@ -1,82 +1,79 @@
 import { useEffect, useState, useContext } from 'react'
 import TypeFilter from '../../components/TypeFilter'
-import {AuthContext} from "../../context/auth.context"
-import {Button} from "react-bootstrap"
+import { AuthContext } from "../../context/auth.context"
+import { Button } from "react-bootstrap"
 import Pokedex from '../../components/pokemons/Pokedex'
 
 
-function AllPokemons(){
+function AllPokemons() {
 
-  const {pokemones} = useContext(AuthContext)
+  const { pokemones } = useContext(AuthContext)
 
   const [pokemons, setPokemons] = useState([])
   const [visiblePokemons, setVisiblePokemons] = useState(pokemons)
   const [search, setSearch] = useState("")
   const [isFecthing, setIsFetching] = useState(true)
 
-  useEffect(()=>{
+  useEffect(() => {
     getData()
   }, [])
 
-  const allPokemonsAgain = ()=>{
+  const allPokemonsAgain = () => {
     setVisiblePokemons(pokemons)
   }
 
-  const getData = async ()=>{
-  
-    try{
-    
+  const getData = async () => {
+
+    try {
+
       setPokemons(pokemones)
       setVisiblePokemons(pokemones)
       setIsFetching(false)
-      
+
     }
-    catch(error){
+    catch (error) {
       console.log(error)
     }
   }
 
-  const filterSearch = (search)=>{
+  const filterSearch = (search) => {
 
     const newArr = pokemons
-    const filteredArr = newArr.filter(e =>{
-      if( e.name.includes(search.toLowerCase().trim())){
+    const filteredArr = newArr.filter(e => {
+      if (e.name.includes(search.toLowerCase().trim())) {
         return e
       }
     })
     setVisiblePokemons(filteredArr)
   }
 
-  const handleChange = e =>{
+  const handleChange = e => {
     setSearch(e.target.value)
     setVisiblePokemons(pokemons)
     filterSearch(e.target.value)
-}
+  }
 
-  if(isFecthing){
+  if (isFecthing) {
     return <h3 className='body dark p-6'>Cargando . . .</h3>
   }
 
-  return(
+  return (
     <main className='dark body p-6'>
-      <h2 style={{color: "whitesmoke", marginBottom: "2rem"}}>Pokédex</h2>
+      <h2 style={{ color: "whitesmoke", marginBottom: "2rem" }}>Pokédex</h2>
 
-        <Button onClick={allPokemonsAgain} style={{marginBottom: "2rem"}} variant='outline-light'>All pokemons</Button>
-
-        <div style={{display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-evenly"}}>
-            <TypeFilter pokeArr={pokemons} setVisible={setVisiblePokemons}/>
-            <div display={{position: "relative"}}>
-              <label style={{color: "whitesmoke", padding: "2rem"}} htmlFor="search">Search</label>
-              <input onChange={handleChange} type="text" name='search' value={search}/>
-            </div>
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "space-evenly" }}>
+        <div display={{ position: "relative" }}>
+          <label style={{ color: "whitesmoke", padding: "2rem" }} htmlFor="search">Search</label>
+          <input onChange={handleChange} type="text" name='search' value={search} />
         </div>
+      </div>
 
       <section className='pokedex-section'>
-      {
-        visiblePokemons && visiblePokemons.map(e=>{
-          return  <Pokedex pokemon={e} key={e.id} />
-        })
-      }
+        {
+          visiblePokemons && visiblePokemons.map(e => {
+            return <Pokedex id={e.id} key={e.id} />
+          })
+        }
       </section>
     </main>
   )
