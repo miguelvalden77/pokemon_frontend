@@ -1,21 +1,21 @@
 import axios from "axios"
 
-const service = axios.create({baseURL:"https://pokeapi.co/api/v2"})
+const service = axios.create({ baseURL: "https://pokeapi.co/api/v2" })
 
-const getAllPokemons = (url)=>{
-    return service.get(url)
+const getAllPokemons = (userId) => {
+    return axios.get(`http://localhost:5005/api/user/getAllPokemon/${userId}`)
 }
 
-const getAPokemon = name =>{
+const getAPokemon = name => {
     return service.get(`/pokemon/${name}`)
 }
 
-const allPokemonsRandom = ()=>{
+const allPokemonsRandom = () => {
     return service.get("pokemon?limit=100000&offset=0")
 }
 
-const getPokemonById = (id)=>{
+const getPokemonById = (id) => {
     return service.get(`pokemon/${id}`)
 }
 
-export {getAllPokemons, getAPokemon, allPokemonsRandom, getPokemonById}
+export { getAllPokemons, getAPokemon, allPokemonsRandom, getPokemonById }

@@ -3,11 +3,10 @@ import TypeFilter from '../../components/TypeFilter'
 import { AuthContext } from "../../context/auth.context"
 import { Button } from "react-bootstrap"
 import Pokedex from '../../components/pokemons/Pokedex'
+import pokemones from "../../pokemons.json"
 
 
 function AllPokemons() {
-
-  const { pokemones } = useContext(AuthContext)
 
   const [pokemons, setPokemons] = useState([])
   const [visiblePokemons, setVisiblePokemons] = useState(pokemons)
@@ -70,8 +69,8 @@ function AllPokemons() {
 
       <section className='pokedex-section'>
         {
-          visiblePokemons && visiblePokemons.map(e => {
-            return <Pokedex id={e.id} key={e.id} />
+          visiblePokemons && visiblePokemons.map((e, index) => {
+            return <Pokedex id={index + 1} key={e.id} />
           })
         }
       </section>

@@ -1,27 +1,27 @@
 import { deletePokemon } from "../services/user.service"
 import { useContext } from "react"
-import {AuthContext} from "../context/auth.context"
-import {Button} from "react-bootstrap"
+import { AuthContext } from "../context/auth.context"
+import { Button } from "react-bootstrap"
 
-function DeletePokemon({name, dataFunction}) {
+function DeletePokemon({ pokeId, dataFunction }) {
 
-    const {user} = useContext(AuthContext)
+  const { user } = useContext(AuthContext)
 
-    const deleteThePokemon = async ()=>{
-        try{
-            console.log(user._id)
-            // Borrar pokemon de array
-            const usuario = await deletePokemon(name, {id: user._id})
-            const updatedPokemons = user.pokemons.filter(e=> e !== name)
-            console.log(usuario)
-            user.pokemons = updatedPokemons
-            dataFunction(user.pokemons)
-            
-        }
-        catch(error){
-            console.log(error)
-        }
+  const deleteThePokemon = async () => {
+    try {
+      // Borrar pokemon de array
+      const { data } = await deletePokemon(pokeId, { id: user._id })
+      console.log({ data, pokeId })
+      dataFunction((prevPokemons) => prevPokemons.filter((pokemon) => {
+        console.log(pokemon)
+        return pokemon.id != pokeId
+      }))
+
     }
+    catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <Button variant="outline-danger" onClick={deleteThePokemon}>Delete</Button>

@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react"
 import { useNavigate, Link } from "react-router-dom"
 import DeletePokemon from "../../components/DeletePokemon"
 import { AuthContext } from "../../context/auth.context"
-import { getAPokemon } from "../../services/pokemon.services"
+import { getAPokemon, getAllPokemons } from "../../services/pokemon.services"
 import { getAPost } from "../../services/post.services"
 import { Button } from "react-bootstrap"
 import UpdatePostForm from "../pokemons/UpdatePostForm"
@@ -39,15 +39,16 @@ const Profile = () => {
     }
   }
 
-  const getMyPokemons = async (arr) => {
+  const getMyPokemons = async () => {
     try {
-      if (user.pokemons.length > 0) {
+      const { data: { pokemons } } = await getAllPokemons(user._id)
+      if (pokemons.length > 0) {
         const newArr = []
-        arr.forEach(async e => {
+        pokemons.forEach(async e => {
           const poke = await getAPokemon(e)
           newArr.push(poke.data)
-          setPokemons(newArr)
         })
+        setPokemons(newArr)
         setIsFetching(false)
         return
       }
@@ -74,7 +75,7 @@ const Profile = () => {
             <section style={{ display: "flex", gap: "1rem", justifyContent: "center" }}>
               {
                 posts ? posts.map(e => {
-                  return <div key={e.title}>
+                  return <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }} key={e.title}>
                     <span style={{
                       color: "black",
                       display: "block",
@@ -82,7 +83,9 @@ const Profile = () => {
                       backgroundColor: "whitesmoke",
                       width: "30px", height: "30px",
                       position: "relative",
-                      top: "15px"
+                      top: "15px",
+                      left: "14px",
+                      alignSelf: "flex-start"
                     }}>{e.comments.length}</span>
                     <img src={e.picture} alt="foto" width={160} height={190} />
                     <h3 style={{ color: "whitesmoke" }}>{e.title}</h3>
@@ -101,12 +104,12 @@ const Profile = () => {
             <h4 style={{ color: "whitesmoke" }}>Tus pokemons</h4>
             <section style={{ display: "flex", gap: "1.5rem", justifyContent: "center", alignItems: "center" }}>
               {
-                pokemons ? pokemons.map(e => {
+                pokemons ? pokemons.map((e) => {
                   return <article style={{ display: "flex", alignItems: "center", flexDirection: "column", gap: "0.5rem", justifyContent: "center", paddingBottom: "2rem" }} key={e.id}>
                     <img src={e.sprites.front_default} alt="foto" />
                     <h4 style={{ color: "whitesmoke" }}>{e.name}</h4>
                     <Link to={`/pokemon/${e.name}/details`}><Button variant="outline-primary">Details</Button></Link>
-                    <DeletePokemon name={e.name} dataFunction={getMyPokemons} />
+                    <DeletePokemon pokeId={e.id} dataFunction={setPokemons} />
                   </article>
                 }) : <div>
                   <p style={{ color: "whitesmoke" }}>Add your first pokemon</p>

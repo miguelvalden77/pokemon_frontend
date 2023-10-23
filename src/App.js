@@ -26,28 +26,29 @@ import IsPrivate from './components/IsPrivate';
 import NonUser from './components/NonUser';
 
 function App() {
+
   return (
     <div className="App">
-      
-      <Navbar/>
+
+      <Navbar />
 
       <Routes>
 
-        <Route path='/' element={<Home/>}/>
-        <Route path='/profile' element={<IsPrivate> <Profile/> </IsPrivate>}/>
-        <Route path='/pokemon/all' element={<AllPokemons/>}/>
-        <Route path='/pokemon/:id/details' element={<IsPrivate> <PokemonDetails/> </IsPrivate>}/>
-        <Route path='/pokemon/random' element={<IsPrivate> <RandomPokemon/> </IsPrivate>}/>
-        <Route path='/pokemon/games' element={<IsPrivate> <AllPokemonGames/> </IsPrivate>}/>
-        <Route path='/pokemon/:url/games' element={<IsPrivate> <SingleGame/> </IsPrivate>}/>
-        <Route path='/pokemon/news' element={<IsPrivate><PokemonNews/></IsPrivate>}/>
-        <Route path='/pokemon/:id/news' element={<IsPrivate><UpdatePostForm/></IsPrivate>}/>
-        <Route path='/register' element={<NonUser><Register/></NonUser>}/>
-        <Route path='/login' element={<NonUser><Login/></NonUser>}/>
+        <Route path='/' element={<Home />} />
+        <Route path='/profile' element={<IsPrivate> <Profile /> </IsPrivate>} />
+        <Route path='/pokemon/all' element={<AllPokemons />} />
+        <Route path='/pokemon/:id/details' element={<IsPrivate> <PokemonDetails /> </IsPrivate>} />
+        <Route path='/pokemon/random' element={<IsPrivate> <RandomPokemon /> </IsPrivate>} />
+        <Route path='/pokemon/games' element={<IsPrivate> <AllPokemonGames /> </IsPrivate>} />
+        <Route path='/pokemon/:url/games' element={<IsPrivate> <SingleGame /> </IsPrivate>} />
+        <Route path='/pokemon/news' element={<IsPrivate><PokemonNews /></IsPrivate>} />
+        <Route path='/pokemon/:id/news' element={<IsPrivate><UpdatePostForm /></IsPrivate>} />
+        <Route path='/register' element={<NonUser><Register /></NonUser>} />
+        <Route path='/login' element={<NonUser><Login /></NonUser>} />
 
         {/* Errors */}
-        <Route path='/*' element={<NotFound/>}/>
-        <Route path='/error' element={<Error/>}/>
+        <Route path='/*' element={<NotFound />} />
+        <Route path='/error' element={<Error />} />
 
       </Routes>
 
